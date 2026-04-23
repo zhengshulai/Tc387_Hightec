@@ -1,0 +1,40 @@
+#ifndef OS_STACK_CFG_H
+# define OS_STACK_CFG_H
+
+#include "Std_Types.h"
+
+
+#define OS_CFG_STACKMONITORING                STD_ON
+#define OS_CFG_STACKMEASUREMENT               STD_ON
+
+								     
+#define OS_CFG_SIZE_BSW0_5MS_TASK_STACK               4096u
+#define OS_CFG_SIZE_BSW1_5MS_TASK_STACK               4096u
+#define OS_CFG_SIZE_BSW2_5MS_TASK_STACK               4096u
+#define OS_CFG_SIZE_BSW3_5MS_TASK_STACK               4096u
+#define OS_CFG_SIZE_OSCORE0_ERROR_STACK               1024u
+#define OS_CFG_SIZE_OSCORE0_INIT_STACK                1024u
+#define OS_CFG_SIZE_OSCORE0_ISR_CORE_STACK            2048u
+#define OS_CFG_SIZE_OSCORE0_KERNEL_STACK              1024u
+#define OS_CFG_SIZE_OSCORE0_PRIO300_STACK             1024u
+#define OS_CFG_SIZE_OSCORE0_PRIO4294967295_STACK      1024u
+#define OS_CFG_SIZE_OSCORE1_ERROR_STACK               1024u
+#define OS_CFG_SIZE_OSCORE1_INIT_STACK                1024u
+#define OS_CFG_SIZE_OSCORE1_ISR_CORE_STACK            2048u
+#define OS_CFG_SIZE_OSCORE1_KERNEL_STACK              1024u
+#define OS_CFG_SIZE_OSCORE1_PRIO300_STACK             1024u
+#define OS_CFG_SIZE_OSCORE1_PRIO4294967295_STACK      1024u
+#define OS_CFG_SIZE_OSCORE2_ERROR_STACK               1024u
+#define OS_CFG_SIZE_OSCORE2_INIT_STACK                1024u
+#define OS_CFG_SIZE_OSCORE2_ISR_CORE_STACK            2048u
+#define OS_CFG_SIZE_OSCORE2_KERNEL_STACK              1024u
+#define OS_CFG_SIZE_OSCORE2_PRIO300_STACK             1024u
+#define OS_CFG_SIZE_OSCORE2_PRIO4294967295_STACK      1024u
+#define OS_CFG_SIZE_OSCORE3_ERROR_STACK               1024u
+#define OS_CFG_SIZE_OSCORE3_INIT_STACK                1024u
+#define OS_CFG_SIZE_OSCORE3_ISR_CORE_STACK            2048u
+#define OS_CFG_SIZE_OSCORE3_KERNEL_STACK              1024u
+#define OS_CFG_SIZE_OSCORE3_PRIO300_STACK             1024u
+#define OS_CFG_SIZE_OSCORE3_PRIO4294967295_STACK      1024u
+
+#endif

@@ -1,0 +1,8 @@
+#ifndef OS_HAL_INTERRUPT_CFG_H
+# define OS_HAL_INTERRUPT_CFG_H
+
+
+#define OS_CFG_HAL_TP_DISABLE_LEVEL           88
+#define OS_CFG_HAL_ISR1_DISABLE_LEVEL         88
+#define OS_CFG_HAL_ISR2_DISABLE_LEVEL         88
+#endif

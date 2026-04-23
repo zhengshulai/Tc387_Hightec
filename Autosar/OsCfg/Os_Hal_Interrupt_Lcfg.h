@@ -1,0 +1,46 @@
+#ifndef OS_HAL_INTERRUPT_LCFG_H
+# define OS_HAL_INTERRUPT_LCFG_H
+
+#include "Std_Types.h"
+
+#include "Os_Hal_Interrupt_Cfg.h"
+#include "Os_Hal_Interrupt_Types.h"
+
+#include "Os_Interrupt_Types.h"
+#include "Os_Hal_Core_Types.h"
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_OsIsr_STM0_Ch0;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_OsIsr_STM0_Ch0;
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_XSignalIsr_OsCore0;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_XSignalIsr_OsCore0;
+
+extern const Os_Hal_XSigInterruptConfigType OsCfg_Hal_XSig_XSignalIsr_OsCore0;
+
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_OsIsr_STM1_Ch0;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_OsIsr_STM1_Ch0;
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_XSignalIsr_OsCore1;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_XSignalIsr_OsCore1;
+
+extern const Os_Hal_XSigInterruptConfigType OsCfg_Hal_XSig_XSignalIsr_OsCore1;
+
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_OsIsr_STM2_Ch0;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_OsIsr_STM2_Ch0;
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_XSignalIsr_OsCore2;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_XSignalIsr_OsCore2;
+
+extern const Os_Hal_XSigInterruptConfigType OsCfg_Hal_XSig_XSignalIsr_OsCore2;
+
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_OsIsr_STM3_Ch0;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_OsIsr_STM3_Ch0;
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_XSignalIsr_OsCore3;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_XSignalIsr_OsCore3;
+
+extern const Os_Hal_XSigInterruptConfigType OsCfg_Hal_XSig_XSignalIsr_OsCore3;
+#endif

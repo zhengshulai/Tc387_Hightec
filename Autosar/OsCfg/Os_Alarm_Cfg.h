@@ -1,0 +1,11 @@
+#ifndef OS_ALARM_CFG_H
+#define OS_ALARM_CFG_H
+
+#include "Std_Types.h"
+
+#define OS_CFG_ALARM_CALLBACK_USED            STD_OFF
+#define OS_CFG_ALARM_ACTIVATETASK_USED        STD_OFF
+#define OS_CFG_ALARM_SETEVENT_USED            STD_ON
+#define OS_CFG_ALARM_INCREMENTCOUNTER_USED    STD_OFF
+
+#endif

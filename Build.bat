@@ -1,0 +1,1 @@
+set path=%path%;C:\HighTec\toolchains\tricore\v4.9.4.1\bin

@@ -1,0 +1,9 @@
+#ifndef OS_TIMINGPROTECTION_CFG_H
+# define OS_TIMINGPROTECTION_CFG_H
+
+#include "Std_Types.h"
+
+
+#define OS_CFG_TIMING_PROTECTION       OS_CFG_TP_NO_CORE
+
+#endif
