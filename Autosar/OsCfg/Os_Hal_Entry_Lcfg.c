@@ -14,7 +14,7 @@
 #include "Os_Hal_Core_Lcfg.h"
 #include "Os_Hal_Interrupt_Cfg.h"
 #include "Os_Hal_Trap.h"
-
+#include "IfxQspi_SpiMaster.h"
 /******************************************Core0********************************************/
 __asm (".section .code.OS_EXCVEC_CORE0_CODE, \"ax\"");
 Os_Hal_ExceptionSectionDeclaration(0)
@@ -75,9 +75,9 @@ Os_Hal_UnhandledInterruptEntry(0,41)
 Os_Hal_UnhandledInterruptEntry(0,42)
 Os_Hal_UnhandledInterruptEntry(0,43)
 Os_Hal_UnhandledInterruptEntry(0,44)
-Os_Hal_UnhandledInterruptEntry(0,45)
-Os_Hal_UnhandledInterruptEntry(0,46)
-Os_Hal_UnhandledInterruptEntry(0,47)
+Os_Hal_Cat2InterruptEntry(0,45,88,PmsmFoc_Qspi_Tlf35584_TxIsr)
+Os_Hal_Cat2InterruptEntry(0,46,88,PmsmFoc_Qspi_Tlf35584_RxIsr)
+Os_Hal_Cat2InterruptEntry(0,47,88,IfxQspi_SpiMaster_isrError)
 Os_Hal_UnhandledInterruptEntry(0,48)
 Os_Hal_UnhandledInterruptEntry(0,49)
 Os_Hal_UnhandledInterruptEntry(0,50)

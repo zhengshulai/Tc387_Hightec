@@ -4,6 +4,8 @@
 #include "Os_ThreadInt.h"
 #include "Os.h"
 
+#include "Mcu_Init.h"
+
 volatile uint8 Test_Os_Core0_Cnt = 0;
 volatile uint8 Test_Os_Core1_Cnt = 0;
 volatile uint8 Test_Os_Core2_Cnt = 0;
@@ -82,8 +84,10 @@ void Os_Task_Default_Init_Task_Core0(void)
 {
 	ISRType stIsrId;
 	const Os_IsrConfigType *pstIsrCfg;
-	const Os_ThreadConfigType *pstCurrentThread;
-	
+	const Os_ThreadConfigType *pstCurrentThread;	
+
+    PmsmFoc_initHardware();
+
 	SchM_Init();
 	while(Rte_InitState_0 != 2){}
 	

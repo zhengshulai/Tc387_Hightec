@@ -41,7 +41,7 @@
 #include "Ifx_Types.h"
 #include "IfxCpu.h"
 #include "IfxScuWdt.h"
-#include "STM_Interrupt.h"
+//#include "STM_Interrupt.h"
 #include "Os.h"
 
 IFX_ALIGN(4) IfxCpu_syncEvent g_cpuSyncEvent = 0;
