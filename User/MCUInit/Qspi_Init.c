@@ -44,9 +44,6 @@
 #include "Qspi_Init.h"
 #include "PmsmFoc_UserConfig.h"
 
-#include MCUCARD_TYPE_PATH
-#include INVERTERCARD_TYPE_PATH
-#include MOTOR_TYPE_PATH
 /******************************************************************************/
 /*-------------------------------Global variables-----------------------------*/
 /******************************************************************************/
@@ -76,11 +73,11 @@ IFX_INLINE void PmsmFoc_Qspi_initQspi2(void)
 	{
 		&SPI_2_CLOCK_PIN,  IfxPort_OutputMode_pushPull,
 		&SPI_2_MOSI_PIN,  IfxPort_OutputMode_pushPull,
-		&SPI_2_MISO_PIN,  IfxPort_InputMode_pullDown,
+		&SPI_2_MISO_PIN,  IfxPort_InputMode_noPullDevice,
 		IfxPort_PadDriver_cmosAutomotiveSpeed1
 	};
 	/* set the maximum baudrate */
-	spiConfig.base.maximumBaudrate = 50.0e6;
+	spiConfig.base.maximumBaudrate = 1.5e6;
 
 	/* ISR priorities and interrupt target */
 	spiConfig.base.txPriority    = INTERRUPT_PRIORITY_QSPI2_TX;

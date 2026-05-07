@@ -14,10 +14,10 @@ extern void Os_Task_Core1_10ms_Task(void);
 extern void Os_Task_Core2_10ms_Task(void);
 extern void Os_Task_Core3_10ms_Task(void);
 
-extern void Os_Task_Default_Init_Task_Core0(void);
-extern void Os_Task_Default_Init_Task_Core1(void);
-extern void Os_Task_Default_Init_Task_Core2(void);
-extern void Os_Task_Default_Init_Task_Core3(void);
+extern void Os_Task_OsHook_Init_Task_Core0(void);
+extern void Os_Task_OsHook_Init_Task_Core1(void);
+extern void Os_Task_OsHook_Init_Task_Core2(void);
+extern void Os_Task_OsHook_Init_Task_Core3(void);
 
 
 

@@ -191,7 +191,7 @@
 	// /*MpuCodeRegionExcutionEnable =*/0u	
 // };
 
-// const Os_Hal_MpThreadConfigType OsCfg_Hal_Mp_Default_Init_Task_Core0 = 
+// const Os_Hal_MpThreadConfigType OsCfg_Hal_Mp_OsHook_Init_Task_Core0 = 
 // {
 	// /*ProtectionSet               =*/1u,
 	// /*MpuDataRegionStartSlot      =*/11u,
@@ -412,7 +412,7 @@
 	// /*MpuCodeRegionExcutionEnable =*/0u	
 // };
 
-// const Os_Hal_MpThreadConfigType OsCfg_Hal_Mp_Default_Init_Task_Core1 = 
+// const Os_Hal_MpThreadConfigType OsCfg_Hal_Mp_OsHook_Init_Task_Core1 = 
 // {
 	// /*ProtectionSet               =*/1u,
 	// /*MpuDataRegionStartSlot      =*/11u,
@@ -635,7 +635,7 @@
 	// /*MpuCodeRegionExcutionEnable =*/0u	
 // };
 
-// const Os_Hal_MpThreadConfigType OsCfg_Hal_Mp_Default_Init_Task_Core2 = 
+// const Os_Hal_MpThreadConfigType OsCfg_Hal_Mp_OsHook_Init_Task_Core2 = 
 // {
 	// /*ProtectionSet               =*/1u,
 	// /*MpuDataRegionStartSlot      =*/11u,
@@ -858,7 +858,7 @@
 	// /*MpuCodeRegionExcutionEnable =*/0u	
 // };
 
-// const Os_Hal_MpThreadConfigType OsCfg_Hal_Mp_Default_Init_Task_Core3 = 
+// const Os_Hal_MpThreadConfigType OsCfg_Hal_Mp_OsHook_Init_Task_Core3 = 
 // {
 	// /*ProtectionSet               =*/1u,
 	// /*MpuDataRegionStartSlot      =*/11u,

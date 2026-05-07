@@ -36,6 +36,44 @@ const Os_Hal_XSigInterruptConfigType OsCfg_Hal_XSig_XSignalIsr_OsCore0 =
 };
 
 
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tlf35584_TxIsr = 
+{
+	/*Level            =*/45,
+	/*Source           =*/0x118,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tlf35584_TxIsr = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tlf35584_RxIsr = 
+{
+	/*Level            =*/46,
+	/*Source           =*/0x11C,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tlf35584_RxIsr = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tlf35584_ErrIsr = 
+{
+	/*Level            =*/47,
+	/*Source           =*/0x120,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tlf35584_ErrIsr = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+
+
+
+
+
 const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_OsIsr_STM1_Ch0 = 
 {
 	/*Level            =*/88,

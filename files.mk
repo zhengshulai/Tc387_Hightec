@@ -50,6 +50,7 @@ USER		             := Cpu0_Main.c Cpu1_Main.c Cpu2_Main.c Cpu3_Main.c Rte_OsAppl
 USER_MCUINIT             := Mcu_Init.c Qspi_Init.c
 USER_EXTDEVINIT          := PmsmFoc_InitTLF35584.c
 USER_EXTDEVDRIVERS       := TLF35584.c
+USER_INTERRUPTS          := PmsmFoc_Interrupts.c
 AUTOSAR_OS		         := Os_AccessCheck.c Os_Alarm.c Os_Application.c Os_Barrier.c Os_Bit.c Os_BitArray.c Os_Core.c Os_Counter.c Os_Deque.c Os_Error.c Os_Event.c Os_Fifo.c\
                             Os_Fifo08.c Os_Fifo16.c Os_Fifo32.c Os_FifoRef.c Os_Hal_Compiler_Diab.c Os_Hal_Compiler_Greenhills.c Os_Hal_Compiler_HighTec.c Os_Hal_Compiler_Tasking.c\
 						    Os_Hal_Context.c Os_Hal_Core.c Os_Hal_Entry.c Os_Hal_Trap.c Os_Hook.c Os_Interrupt.c Os_Ioc.c Os_Isr.c Os_Job.c Os_Lock.c Os_MemoryProtection.c\
@@ -112,6 +113,7 @@ USER_PATH                := $(ROOT)User
 USER_MCUINIT_PATH        := $(ROOT)User/MCUInit
 USER_EXTDEVINIT_PATH     := $(ROOT)User/ExtDevInit
 USER_EXTDEVDRIVERS_PATH  := $(ROOT)User/ExtDevDrivers
+USER_INTERRUPTS_PATH     := $(ROOT)User/Interrupts
 AUTOSAR_OS_PATH          := $(ROOT)Autosar/Os
 AUTOSAR_OSCFG_PATH       := $(ROOT)Autosar/OsCfg
 OBJ_PATH                 := $(ROOT)Obj
@@ -164,6 +166,7 @@ CFILES                 += $(addprefix $(USER_PATH)/,$(USER))
 CFILES                 += $(addprefix $(USER_MCUINIT_PATH)/,$(USER_MCUINIT))
 CFILES                 += $(addprefix $(USER_EXTDEVINIT_PATH)/,$(USER_EXTDEVINIT))
 CFILES                 += $(addprefix $(USER_EXTDEVDRIVERS_PATH)/,$(USER_EXTDEVDRIVERS))
+CFILES                 += $(addprefix $(USER_INTERRUPTS_PATH)/,$(USER_INTERRUPTS))
 CFILES                 += $(addprefix $(AUTOSAR_OS_PATH)/,$(AUTOSAR_OS))
 CFILES                 += $(addprefix $(AUTOSAR_OSCFG_PATH)/,$(AUTOSAR_OSCFG))
 
@@ -180,4 +183,5 @@ HEADERS                := $(CONFIGURATIONS_PATH) $(ILLD_Impl_PATH) $(ILLD_Lib_PA
                           $(ILLD_StdIf_PATH) $(ILLD_SysSe_PATH) $(INFRA_Compilers_PATH) $(INFRA_StartUp_PATH)\
                           $(SERVICE_If_PATH) $(SERVICE_StdIf_PATH) $(SERVICE_SysSe_PATH) $(USER_PATH)\
 						  $(INFRA_Reg_PATH) $(SERVICE_Utilities_PATH) $(ILLD_Port_PATH) $(AUTOSAR_OS_PATH)\
-						  $(AUTOSAR_OSCFG_PATH) $(USER_MCUINIT_PATH) $(USER_EXTDEVINIT_PATH) $(USER_EXTDEVDRIVERS_PATH)
+						  $(AUTOSAR_OSCFG_PATH) $(USER_MCUINIT_PATH) $(USER_EXTDEVINIT_PATH) $(USER_EXTDEVDRIVERS_PATH)\
+						  $(USER_INTERRUPTS_PATH)

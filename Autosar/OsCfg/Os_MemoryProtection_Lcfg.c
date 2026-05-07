@@ -45,10 +45,10 @@
 	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_Core0_10ms_Task
 // };
 
-// const Os_MpAccessRightsType OsCfg_Mp_Default_Init_Task_Core0 = 
+// const Os_MpAccessRightsType OsCfg_Mp_OsHook_Init_Task_Core0 = 
 // {
 	// /*AppAccessRights    =*/&OsCfg_Hal_Mp_OsApplication_NonTrusted_Core0,
-	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_Default_Init_Task_Core0
+	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_OsHook_Init_Task_Core0
 // };
 
 // const Os_MpAccessRightsType OsCfg_Mp_IdleTask_OsCore0 = 
@@ -94,10 +94,10 @@
 	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_Core1_10ms_Task
 // };
 
-// const Os_MpAccessRightsType OsCfg_Mp_Default_Init_Task_Core1 = 
+// const Os_MpAccessRightsType OsCfg_Mp_OsHook_Init_Task_Core1 = 
 // {
 	// /*AppAccessRights    =*/&OsCfg_Hal_Mp_OsApplication_NonTrusted_Core1,
-	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_Default_Init_Task_Core1
+	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_OsHook_Init_Task_Core1
 // };
 
 // const Os_MpAccessRightsType OsCfg_Mp_IdleTask_OsCore1 = 
@@ -144,10 +144,10 @@
 	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_Core2_10ms_Task
 // };
 
-// const Os_MpAccessRightsType OsCfg_Mp_Default_Init_Task_Core2 = 
+// const Os_MpAccessRightsType OsCfg_Mp_OsHook_Init_Task_Core2 = 
 // {
 	// /*AppAccessRights    =*/&OsCfg_Hal_Mp_OsApplication_NonTrusted_Core2,
-	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_Default_Init_Task_Core2
+	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_OsHook_Init_Task_Core2
 // };
 
 // const Os_MpAccessRightsType OsCfg_Mp_IdleTask_OsCore2 = 
@@ -194,10 +194,10 @@
 	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_Core3_10ms_Task
 // };
 
-// const Os_MpAccessRightsType OsCfg_Mp_Default_Init_Task_Core3 = 
+// const Os_MpAccessRightsType OsCfg_Mp_OsHook_Init_Task_Core3 = 
 // {
 	// /*AppAccessRights    =*/&OsCfg_Hal_Mp_OsApplication_NonTrusted_Core3,
-	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_Default_Init_Task_Core3
+	// /*ThreadAccessRights =*/&OsCfg_Hal_Mp_OsHook_Init_Task_Core3
 // };
 
 // const Os_MpAccessRightsType OsCfg_Mp_IdleTask_OsCore3 = 

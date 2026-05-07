@@ -49,8 +49,11 @@ static const Os_HookConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_HookR
 {
 	NULL_PTR
 };
-static const Os_IsrConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_IsrRefs[1] = 
+static const Os_IsrConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_IsrRefs[4] = 
 {
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tlf35584_TxIsr),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tlf35584_RxIsr),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tlf35584_ErrIsr),
 	NULL_PTR
 };
 static const Os_IsrCat1ConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_Cat1IsrRefs[1] = 
@@ -64,7 +67,7 @@ static const Os_SchTConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_SchTR
 static const Os_TaskConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_TaskRefs[3] = 
 {
 	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_Core0_10ms_Task),
-	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_Default_Init_Task_Core0),	
+	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_OsHook_Init_Task_Core0),	
 	NULL_PTR
 };
 static const Os_ServiceConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_ServiceRefs[1] = 
@@ -80,7 +83,7 @@ const Os_AppConfigType OsCfg_App_OsApplication_NonTrusted_Core0 =
 	/*TaskRefs                     =*/OsCfg_App_OsApplication_NonTrusted_Core0_TaskRefs,
 	/*TaskCount                    =*/(Os_ObjIdxType)2u,
 	/*IsrCat2Refs                  =*/OsCfg_App_OsApplication_NonTrusted_Core0_IsrRefs,
-	/*IsrCat2Count                 =*/(Os_ObjIdxType)0u,
+	/*IsrCat2Count                 =*/(Os_ObjIdxType)3u,
 	/*IsrCat1Refs                  =*/OsCfg_App_OsApplication_NonTrusted_Core0_Cat1IsrRefs,
 	/*IsrCat1Count                 =*/(Os_ObjIdxType)0u,
 	/*CounterRefs                  =*/OsCfg_App_OsApplication_NonTrusted_Core0_CounterRefs,
@@ -205,7 +208,7 @@ static const Os_SchTConfigRefType OsCfg_App_OsApplication_NonTrusted_Core1_SchTR
 static const Os_TaskConfigRefType OsCfg_App_OsApplication_NonTrusted_Core1_TaskRefs[3] = 
 {
 	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_Core1_10ms_Task),
-	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_Default_Init_Task_Core1),
+	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_OsHook_Init_Task_Core1),
 	NULL_PTR
 };
 static const Os_ServiceConfigRefType OsCfg_App_OsApplication_NonTrusted_Core1_ServiceRefs[1] = 
@@ -346,7 +349,7 @@ static const Os_SchTConfigRefType OsCfg_App_OsApplication_NonTrusted_Core2_SchTR
 static const Os_TaskConfigRefType OsCfg_App_OsApplication_NonTrusted_Core2_TaskRefs[3] = 
 {
 	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_Core2_10ms_Task),
-	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_Default_Init_Task_Core2),
+	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_OsHook_Init_Task_Core2),
 	NULL_PTR
 };
 static const Os_ServiceConfigRefType OsCfg_App_OsApplication_NonTrusted_Core2_ServiceRefs[1] = 
@@ -487,7 +490,7 @@ static const Os_SchTConfigRefType OsCfg_App_OsApplication_NonTrusted_Core3_SchTR
 static const Os_TaskConfigRefType OsCfg_App_OsApplication_NonTrusted_Core3_TaskRefs[3] = 
 {
 	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_Core3_10ms_Task),
-	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_Default_Init_Task_Core3),
+	OS_TASK_CASTCONFIG_TASK_2_TASK(OsCfg_Task_OsHook_Init_Task_Core3),
 	NULL_PTR
 };
 static const Os_ServiceConfigRefType OsCfg_App_OsApplication_NonTrusted_Core3_ServiceRefs[1] = 

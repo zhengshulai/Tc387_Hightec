@@ -565,7 +565,7 @@ void IfxQspi_SpiMaster_initModuleConfig(IfxQspi_SpiMaster_Config *config, Ifx_QS
     config->dma.rxDmaChannelId         = IfxDma_ChannelId_none;
     config->dma.txDmaChannelId         = IfxDma_ChannelId_none;
     config->dma.useDma                 = FALSE;
-    config->base.maximumBaudrate       = 50000000;
+    config->base.maximumBaudrate       = 1500000;
 }
 
 
@@ -852,7 +852,10 @@ void IfxQspi_SpiMaster_packLongModeBuffer(IfxQspi_SpiMaster_Channel *chHandle, v
     }
 }
 
-
+uint8 qspi2_rxData_u8 = 0;
+uint16 qspi2_rxData_u16 = 0;
+uint32 qspi2_rxData_u32 = 0;
+sint16 qspi2_count = 0;
 IFX_STATIC void IfxQspi_SpiMaster_read(IfxQspi_SpiMaster_Channel *chHandle)
 {
     IfxQspi_SpiMaster *handle  = chHandle->base.driver->driver;
@@ -878,16 +881,20 @@ IFX_STATIC void IfxQspi_SpiMaster_read(IfxQspi_SpiMaster_Channel *chHandle)
         {
             IfxQspi_read8(qspiSFR, job->data, count);
             job->data = &(((uint8 *)job->data)[count]);
+			qspi2_rxData_u8 = ((uint8 *)job->data)[count];
         }
         else if (chHandle->dataWidth <= 16)
         {
             IfxQspi_read16(qspiSFR, job->data, count);
             job->data = &(((uint16 *)job->data)[count]);
+			qspi2_rxData_u16 = ((uint16 *)job->data)[count];
+			qspi2_count = count;
         }
         else
         {
             IfxQspi_read32(qspiSFR, job->data, count);
             job->data = &(((uint32 *)job->data)[count]);
+			qspi2_rxData_u32 = ((uint32 *)job->data)[count];
         }
     }
 

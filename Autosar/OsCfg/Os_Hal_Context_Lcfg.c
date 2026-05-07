@@ -17,7 +17,7 @@
 #include "Os_Task.h"
 
 #include "Os_Hal_Core.h"
-
+#include "PmsmFoc_Interrupts.h"
 
 /*******************************************Core0*******************************************/
 Os_Hal_ContextType OsCfg_Hal_Context_Os_CoreInitHook_OsCore0_Dyn;
@@ -35,8 +35,8 @@ Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_OsCore0_Isr_Level2_Dyn;
 Os_Hal_ContextType OsCfg_Hal_Context_Core0_10ms_Task_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Core0_10ms_Task_Dyn;
 
-Os_Hal_ContextType OsCfg_Hal_Context_Default_Init_Task_Core0_Dyn;
-Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Default_Init_Task_Core0_Dyn;
+Os_Hal_ContextType OsCfg_Hal_Context_OsHook_Init_Task_Core0_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_OsHook_Init_Task_Core0_Dyn;
 
 Os_Hal_ContextType OsCfg_Hal_Context_IdleTask_OsCore0_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_IdleTask_OsCore0_Dyn;
@@ -44,6 +44,14 @@ Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_IdleTask_OsCore0_Dyn;
 Os_ExceptionContextType OsCfg_Hal_Context_OsCore0_ExceptionContext;
 
 
+Os_Hal_ContextType OsCfg_Hal_Context_Tlf35584_TxIsr_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Tlf35584_TxIsr_Dyn;
+
+Os_Hal_ContextType OsCfg_Hal_Context_Tlf35584_RxIsr_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Tlf35584_RxIsr_Dyn;
+
+Os_Hal_ContextType OsCfg_Hal_Context_Tlf35584_ErrIsr_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Tlf35584_ErrIsr_Dyn;
 
 /*******************************************Core1*******************************************/
 Os_Hal_ContextType OsCfg_Hal_Context_Os_CoreInitHook_OsCore1_Dyn;
@@ -64,8 +72,8 @@ Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_OsCore1_Isr_Level3_Dyn;
 Os_Hal_ContextType OsCfg_Hal_Context_Core1_10ms_Task_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Core1_10ms_Task_Dyn;
 
-Os_Hal_ContextType OsCfg_Hal_Context_Default_Init_Task_Core1_Dyn;
-Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Default_Init_Task_Core1_Dyn;
+Os_Hal_ContextType OsCfg_Hal_Context_OsHook_Init_Task_Core1_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_OsHook_Init_Task_Core1_Dyn;
 
 Os_Hal_ContextType OsCfg_Hal_Context_IdleTask_OsCore1_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_IdleTask_OsCore1_Dyn;
@@ -90,8 +98,8 @@ Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_OsCore2_Isr_Level2_Dyn;
 Os_Hal_ContextType OsCfg_Hal_Context_Core2_10ms_Task_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Core2_10ms_Task_Dyn;
 
-Os_Hal_ContextType OsCfg_Hal_Context_Default_Init_Task_Core2_Dyn;
-Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Default_Init_Task_Core2_Dyn;
+Os_Hal_ContextType OsCfg_Hal_Context_OsHook_Init_Task_Core2_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_OsHook_Init_Task_Core2_Dyn;
 
 Os_Hal_ContextType OsCfg_Hal_Context_IdleTask_OsCore2_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_IdleTask_OsCore2_Dyn;
@@ -116,8 +124,8 @@ Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_OsCore3_Isr_Level2_Dyn;
 Os_Hal_ContextType OsCfg_Hal_Context_Core3_10ms_Task_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Core3_10ms_Task_Dyn;
 
-Os_Hal_ContextType OsCfg_Hal_Context_Default_Init_Task_Core3_Dyn;
-Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Default_Init_Task_Core3_Dyn;
+Os_Hal_ContextType OsCfg_Hal_Context_OsHook_Init_Task_Core3_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_OsHook_Init_Task_Core3_Dyn;
 
 Os_Hal_ContextType OsCfg_Hal_Context_IdleTask_OsCore3_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_IdleTask_OsCore3_Dyn;
@@ -173,6 +181,46 @@ const Os_Hal_ContextConfigType OsCfg_Hal_Context_XSignalIsr_OsCore0 =
 	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
 
+
+
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_Tlf35584_TxIsr = 
+{
+	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_Tlf35584_TxIsr_Dyn)+1),
+	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_Tlf35584_TxIsr_Dyn)),
+	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
+	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
+	/*Entry               =*/(uint32)&Os_Isr_Qspi_Tlf35584_TxIsr,
+	/*ReturnAddress       =*/(uint32)&Os_TrapIsrEpilogue,
+	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
+};
+
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_Tlf35584_RxIsr = 
+{
+	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_Tlf35584_RxIsr_Dyn)+1),
+	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_Tlf35584_RxIsr_Dyn)),
+	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
+	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
+	/*Entry               =*/(uint32)&Os_Isr_Qspi_Tlf35584_RxIsr,
+	/*ReturnAddress       =*/(uint32)&Os_TrapIsrEpilogue,
+	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
+};
+
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_Tlf35584_ErrIsr = 
+{
+	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_Tlf35584_ErrIsr_Dyn)+1),
+	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_Tlf35584_ErrIsr_Dyn)),
+	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
+	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
+	/*Entry               =*/(uint32)&Os_Isr_Qspi_Tlf35584_ErrIsr,
+	/*ReturnAddress       =*/(uint32)&Os_TrapIsrEpilogue,
+	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
+};
+
+
+
+
+
+
 const Os_Hal_ContextConfigType OsCfg_Hal_Context_Core0_10ms_Task = 
 {
 	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_Core0_10ms_Task_Dyn)+1),
@@ -184,13 +232,13 @@ const Os_Hal_ContextConfigType OsCfg_Hal_Context_Core0_10ms_Task =
 	/*IntStatus           =*/((uint32)0<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
 
-const Os_Hal_ContextConfigType OsCfg_Hal_Context_Default_Init_Task_Core0 = 
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_OsHook_Init_Task_Core0 = 
 {
 	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_OsCore0_Task_Prio300_Dyn)+1),
 	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_OsCore0_Task_Prio300_Dyn)),
 	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
 	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
-	/*Entry               =*/(uint32)&Os_Task_Default_Init_Task_Core0,
+	/*Entry               =*/(uint32)&Os_Task_OsHook_Init_Task_Core0,
 	/*ReturnAddress       =*/(uint32)&Os_TrapTaskMissingTerminateTask,
 	/*IntStatus           =*/((uint32)0<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
@@ -271,13 +319,13 @@ const Os_Hal_ContextConfigType OsCfg_Hal_Context_Core1_10ms_Task =
 	/*IntStatus           =*/((uint32)0<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
 
-const Os_Hal_ContextConfigType OsCfg_Hal_Context_Default_Init_Task_Core1 = 
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_OsHook_Init_Task_Core1 = 
 {
 	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_OsCore1_Task_Prio300_Dyn)+1),
 	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_OsCore1_Task_Prio300_Dyn)),
 	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
 	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
-	/*Entry               =*/(uint32)&Os_Task_Default_Init_Task_Core1,
+	/*Entry               =*/(uint32)&Os_Task_OsHook_Init_Task_Core1,
 	/*ReturnAddress       =*/(uint32)&Os_TrapTaskMissingTerminateTask,
 	/*IntStatus           =*/((uint32)0<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
@@ -357,13 +405,13 @@ const Os_Hal_ContextConfigType OsCfg_Hal_Context_Core2_10ms_Task =
 	/*IntStatus           =*/((uint32)0<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
 
-const Os_Hal_ContextConfigType OsCfg_Hal_Context_Default_Init_Task_Core2 = 
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_OsHook_Init_Task_Core2 = 
 {
 	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_OsCore2_Task_Prio300_Dyn)+1),
 	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_OsCore2_Task_Prio300_Dyn)),
 	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
 	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
-	/*Entry               =*/(uint32)&Os_Task_Default_Init_Task_Core2,
+	/*Entry               =*/(uint32)&Os_Task_OsHook_Init_Task_Core2,
 	/*ReturnAddress       =*/(uint32)&Os_TrapTaskMissingTerminateTask,
 	/*IntStatus           =*/((uint32)0<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
@@ -442,13 +490,13 @@ const Os_Hal_ContextConfigType OsCfg_Hal_Context_Core3_10ms_Task =
 	/*IntStatus           =*/((uint32)0<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
 
-const Os_Hal_ContextConfigType OsCfg_Hal_Context_Default_Init_Task_Core3 = 
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_OsHook_Init_Task_Core3 = 
 {
 	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_OsCore3_Task_Prio300_Dyn)+1),
 	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_OsCore3_Task_Prio300_Dyn)),
 	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
 	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
-	/*Entry               =*/(uint32)&Os_Task_Default_Init_Task_Core3,
+	/*Entry               =*/(uint32)&Os_Task_OsHook_Init_Task_Core3,
 	/*ReturnAddress       =*/(uint32)&Os_TrapTaskMissingTerminateTask,
 	/*IntStatus           =*/((uint32)0<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };

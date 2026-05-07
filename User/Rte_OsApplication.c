@@ -5,7 +5,7 @@
 #include "Os.h"
 
 #include "Mcu_Init.h"
-
+#include "TLF35584.h"
 volatile uint8 Test_Os_Core0_Cnt = 0;
 volatile uint8 Test_Os_Core1_Cnt = 0;
 volatile uint8 Test_Os_Core2_Cnt = 0;
@@ -31,7 +31,7 @@ static void SchM_Init(void)
 	if(id == OS_CORE_ID_0)
 	{
 		(void)ActivateTask(Core0_10ms_Task);
-		(void)SetRelAlarm(Rte_Al_TE2_Core0_10ms_Task_0_10ms, OS_MS2TICKS_SystemTimer_Core0(0)+(TickType)1, OS_MS2TICKS_SystemTimer_Core0(10));		
+		(void)SetRelAlarm(Rte_Al_TE2_Core0_10ms_Task_0_10ms, OS_MS2TICKS_SystemTimer_Core0(0)+(TickType)1, OS_MS2TICKS_SystemTimer_Core0(200));		
 		Rte_InitState_0 = 2;
 	}
 	if(id == OS_CORE_ID_1)
@@ -76,11 +76,12 @@ void Os_Task_Core0_10ms_Task(void)
 		if((ev & Rte_Ev_Cyclic2_Core0_10ms_Task_0_10ms) != (EventMaskType)0)
 		{
 			Test_Os_Core0_Cnt++;
+			IfxTLF35584_readWrite(0x3E01);
 		}
 	}
 }
 
-void Os_Task_Default_Init_Task_Core0(void)
+void Os_Task_OsHook_Init_Task_Core0(void)
 {
 	ISRType stIsrId;
 	const Os_IsrConfigType *pstIsrCfg;
@@ -132,7 +133,7 @@ void Os_Task_Core1_10ms_Task(void)
 	}
 }
 
-void Os_Task_Default_Init_Task_Core1(void)
+void Os_Task_OsHook_Init_Task_Core1(void)
 {
 	ISRType stIsrId;
 	const Os_IsrConfigType *pstIsrCfg;
@@ -179,7 +180,7 @@ void Os_Task_Core2_10ms_Task(void)
 	}
 }
 
-void Os_Task_Default_Init_Task_Core2(void)
+void Os_Task_OsHook_Init_Task_Core2(void)
 {
 	ISRType stIsrId;
 	const Os_IsrConfigType *pstIsrCfg;
@@ -226,7 +227,7 @@ void Os_Task_Core3_10ms_Task(void)
 	}
 }
 
-void Os_Task_Default_Init_Task_Core3(void)
+void Os_Task_OsHook_Init_Task_Core3(void)
 {
 	ISRType stIsrId;
 	const Os_IsrConfigType *pstIsrCfg;

@@ -16,10 +16,10 @@
 #define Core1_10ms_Task                  Core1_10ms_Task
 #define Core2_10ms_Task                  Core2_10ms_Task
 #define Core3_10ms_Task                  Core3_10ms_Task
-#define Default_Init_Task_Core0        Default_Init_Task_Core0
-#define Default_Init_Task_Core1        Default_Init_Task_Core1
-#define Default_Init_Task_Core2        Default_Init_Task_Core2
-#define Default_Init_Task_Core3        Default_Init_Task_Core3
+#define OsHook_Init_Task_Core0        OsHook_Init_Task_Core0
+#define OsHook_Init_Task_Core1        OsHook_Init_Task_Core1
+#define OsHook_Init_Task_Core2        OsHook_Init_Task_Core2
+#define OsHook_Init_Task_Core3        OsHook_Init_Task_Core3
 #define IdleTask_OsCore0               IdleTask_OsCore0
 #define IdleTask_OsCore1               IdleTask_OsCore1
 #define IdleTask_OsCore2               IdleTask_OsCore2
@@ -34,6 +34,14 @@
 #define XSignalIsr_OsCore1             XSignalIsr_OsCore1
 #define XSignalIsr_OsCore2             XSignalIsr_OsCore2
 #define XSignalIsr_OsCore3             XSignalIsr_OsCore3
+
+#define Tlf35584_TxIsr            Tlf35584_TxIsr
+#define Tlf35584_RxIsr            Tlf35584_RxIsr
+#define Tlf35584_ErrIsr           Tlf35584_ErrIsr
+
+
+
+
 
 #define Rte_Al_TE2_Core0_10ms_Task_0_10ms Rte_Al_TE2_Core0_10ms_Task_0_10ms
 #define Rte_Al_TE2_Core1_10ms_Task_0_10ms Rte_Al_TE2_Core1_10ms_Task_0_10ms
@@ -91,10 +99,10 @@ typedef enum
 	Core1_10ms_Task = 1,
 	Core2_10ms_Task = 2,
 	Core3_10ms_Task = 3,
-	Default_Init_Task_Core0 = 4,
-	Default_Init_Task_Core1 = 5,
-	Default_Init_Task_Core2 = 6,
-	Default_Init_Task_Core3 = 7,
+	OsHook_Init_Task_Core0 = 4,
+	OsHook_Init_Task_Core1 = 5,
+	OsHook_Init_Task_Core2 = 6,
+	OsHook_Init_Task_Core3 = 7,
 	IdleTask_OsCore0 = 8,
 	IdleTask_OsCore1 = 9,
 	IdleTask_OsCore2 = 10,
@@ -113,7 +121,10 @@ typedef enum
 	XSignalIsr_OsCore1 = 5,
 	XSignalIsr_OsCore2 = 6,
 	XSignalIsr_OsCore3 = 7,
-	OS_ISRID_COUNT = 8,
+    Tlf35584_TxIsr = 8,
+	Tlf35584_RxIsr = 9,
+	Tlf35584_ErrIsr = 10,
+	OS_ISRID_COUNT = 11,
 	INVALID_ISR = OS_ISRID_COUNT
 }ISRType;
 

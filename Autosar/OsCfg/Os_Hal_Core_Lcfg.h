@@ -35,5 +35,5 @@ extern const Os_Hal_CoreAsrConfigType OsCfg_Hal_CoreAsr_OsCore3;
 
 extern const Os_Hal_Core2ThreadConfigType OsCfg_Hal_Core2Thread;
 extern const Os_Hal_SystemConfigType OsCfg_Hal_System;
-extern const Os_IsrHwConfigType* const OsCfg_Hal_System_InterruptSourceRefs[9];
+extern const Os_IsrHwConfigType* const OsCfg_Hal_System_InterruptSourceRefs[12];
 #endif

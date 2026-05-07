@@ -18,6 +18,19 @@ extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_XSignalIsr_OsCore0;
 extern const Os_Hal_XSigInterruptConfigType OsCfg_Hal_XSig_XSignalIsr_OsCore0;
 
 
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tlf35584_TxIsr;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tlf35584_TxIsr;
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tlf35584_RxIsr;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tlf35584_RxIsr;
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tlf35584_ErrIsr;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tlf35584_ErrIsr;
+
+
+
+
+
 extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_OsIsr_STM1_Ch0;
 extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_OsIsr_STM1_Ch0;
 

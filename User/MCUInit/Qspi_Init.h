@@ -45,9 +45,9 @@
 #include "IfxDma.h"
 #include "PmsmFoc_UserConfig.h"
 
-#include MCUCARD_TYPE_PATH
-#include INVERTERCARD_TYPE_PATH
-#include MOTOR_TYPE_PATH
+#include "PmsmFoc_AppKitTft_TC387A.h"
+//#include INVERTERCARD_TYPE_PATH
+//#include MOTOR_TYPE_PATH
 
 /******************************************************************************/
 /*-----------------------------------Macros-----------------------------------*/

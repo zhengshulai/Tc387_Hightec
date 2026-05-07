@@ -72,7 +72,7 @@ static const Os_ResourceConfigRefType OsCfg_Core_OsCore0_ResourceRefs[3] =
 	OS_RESOURCE_CASTCONFIG_RESOURCE_2_RESOURCE(OsCfg_Resource_RES_SCHEDULER_OsCore0),
 	NULL_PTR
 };
-static const Os_StackConfigRefType OsCfg_Core_OsCore0_StackRefs[8] = 
+static const Os_StackConfigRefType OsCfg_Core_OsCore0_StackRefs[11] = 
 {
 	(Os_StackConfigRefType)&OsCfg_Stack_Core0_10ms_Task,
 	(Os_StackConfigRefType)&OsCfg_Stack_OsCore0_Error,
@@ -81,12 +81,18 @@ static const Os_StackConfigRefType OsCfg_Core_OsCore0_StackRefs[8] =
 	(Os_StackConfigRefType)&OsCfg_Stack_OsCore0_Kernel,
 	(Os_StackConfigRefType)&OsCfg_Stack_OsCore0_Task_Prio300,
 	(Os_StackConfigRefType)&OsCfg_Stack_OsCore0_Task_Prio4294967295,
+	(Os_StackConfigRefType)&OsCfg_Stack_Tlf35584_TxIsr,
+	(Os_StackConfigRefType)&OsCfg_Stack_Tlf35584_RxIsr,
+	(Os_StackConfigRefType)&OsCfg_Stack_Tlf35584_ErrIsr,	
 	NULL_PTR
 };
-static const Os_IsrConfigRefType OsCfg_Core_OsCore0_IsrRefs[3] =
+static const Os_IsrConfigRefType OsCfg_Core_OsCore0_IsrRefs[6] =
 {
 	OS_TIMER_CASTCONFIG_TIMERISR_2_ISR(OsCfg_Isr_OsIsr_STM0_Ch0),
 	OS_XSIGNAL_CASTCONFIG_XSIGNALISR_2_ISR(OsCfg_Isr_XSignalIsr_OsCore0),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tlf35584_TxIsr),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tlf35584_RxIsr),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tlf35584_ErrIsr),
 	NULL_PTR
 };
 const Os_CoreAsrConfigType OsCfg_Core_OsCore0 = 
@@ -125,7 +131,7 @@ const Os_CoreAsrConfigType OsCfg_Core_OsCore0 =
 	/*MemoryProtection       =*/NULL_PTR,
 	/*TimingProtection       =*/NULL_PTR,
 	/*StackRefs              =*/OsCfg_Core_OsCore0_StackRefs,	
-	/*StackCount             =*/(Os_ObjIdxType)7u,
+	/*StackCount             =*/(Os_ObjIdxType)10u,
 	/*CoreIdx                =*/OS_COREASRCOREIDX_0,
 	/*XSignal                =*/&OsCfg_XSig_OsCore0,
 	/*IocRefs                =*/OsCfg_Core_OsCore0_IocRefs,
@@ -135,7 +141,7 @@ const Os_CoreAsrConfigType OsCfg_Core_OsCore0 =
 	/*BarrierCount           =*/(Os_ObjIdxType)0u,
 	/*ThreadClass            =*/&OsCfg_Core_OsCore0_ThreadClass,
 	/*IsrRefs                =*/OsCfg_Core_OsCore0_IsrRefs,
-	/*IsrCount               =*/(Os_ObjIdxType)2u
+	/*IsrCount               =*/(Os_ObjIdxType)5u
 };
 
 
@@ -452,6 +458,6 @@ const Os_SystemConfigType OsCfg_System =
 	/*HwConfig               =*/&OsCfg_Hal_System,
 	/*MemoryProtection       =*/NULL_PTR,
 	/*InterruptSourceRefs    =*/OsCfg_Hal_System_InterruptSourceRefs,
-	/*InterruptSourceCount   =*/(Os_ObjIdxType)8,
+	/*InterruptSourceCount   =*/(Os_ObjIdxType)11,
 	/*Core2Thread            =*/&OsCfg_Hal_Core2Thread
 };

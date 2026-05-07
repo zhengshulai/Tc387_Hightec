@@ -18,6 +18,11 @@ Os_Hal_StackType OsCfg_Stack_OsCore0_Isr_Level88_Dyn[(2048+16)/4];
 Os_Hal_StackType OsCfg_Stack_OsCore0_Kernel_Dyn[(1024+16)/4];
 Os_Hal_StackType OsCfg_Stack_OsCore0_Task_Prio300_Dyn[(1024+16)/4];
 Os_Hal_StackType OsCfg_Stack_OsCore0_Task_Prio4294967295_Dyn[(1024+16)/4];
+
+Os_Hal_StackType OsCfg_Stack_Tlf35584_TxIsr_Dyn[(2048+16)/4];
+Os_Hal_StackType OsCfg_Stack_Tlf35584_RxIsr_Dyn[(2048+16)/4];
+Os_Hal_StackType OsCfg_Stack_Tlf35584_ErrIsr_Dyn[(2048+16)/4];
+
 Os_Hal_StackType OsCfg_Stack_OsCore1_Error_Dyn[(1024+16)/4];
 Os_Hal_StackType OsCfg_Stack_OsCore1_Init_Dyn[(1024+16)/4];
 Os_Hal_StackType OsCfg_Stack_OsCore1_Isr_Core_Dyn[(2048+16)/4];
@@ -82,6 +87,21 @@ const Os_StackConfigType OsCfg_Stack_OsCore0_Task_Prio4294967295 =
 	/*HighAddress    =*/OS_STACK_GETHIGHADDRESS(OsCfg_Stack_OsCore0_Task_Prio4294967295_Dyn)
 };
 
+const Os_StackConfigType OsCfg_Stack_Tlf35584_TxIsr = 
+{
+	/*LowAddress     =*/OS_STACK_GETLOWADDRESS(OsCfg_Stack_Tlf35584_TxIsr_Dyn),
+	/*HighAddress    =*/OS_STACK_GETHIGHADDRESS(OsCfg_Stack_Tlf35584_TxIsr_Dyn)
+};
+const Os_StackConfigType OsCfg_Stack_Tlf35584_RxIsr = 
+{
+	/*LowAddress     =*/OS_STACK_GETLOWADDRESS(OsCfg_Stack_Tlf35584_RxIsr_Dyn),
+	/*HighAddress    =*/OS_STACK_GETHIGHADDRESS(OsCfg_Stack_Tlf35584_RxIsr_Dyn)
+};
+const Os_StackConfigType OsCfg_Stack_Tlf35584_ErrIsr = 
+{
+	/*LowAddress     =*/OS_STACK_GETLOWADDRESS(OsCfg_Stack_Tlf35584_ErrIsr_Dyn),
+	/*HighAddress    =*/OS_STACK_GETHIGHADDRESS(OsCfg_Stack_Tlf35584_ErrIsr_Dyn)
+};
 
 
 /************************************************************Core1*********************************************************/
