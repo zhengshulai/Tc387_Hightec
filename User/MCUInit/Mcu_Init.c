@@ -45,7 +45,7 @@
 #include "Ifx_Types.h"
 #include "IfxCpu.h"
 #include "Qspi_Init.h"
-//#include "PmsmFoc_InitTLE9180.h"
+#include "PmsmFoc_InitTLE9180.h"
 //#include "PmsmFoc_Inverter.h"
 //#include "PmsmFoc_PositionAndSpeedAcquisition.h"
 #include "PmsmFoc_UserConfig.h"
@@ -65,17 +65,17 @@ void PmsmFoc_initHardware()
 
 	IfxCpu_disableInterrupts();
 
-	// IfxPort_setPinMode(&MODULE_P13, 0, IfxPort_Mode_outputPushPullGeneral);     /* LED107 */
-	// IfxPort_setPinHigh(&MODULE_P13, 0);
-	// IfxPort_setPinMode(&MODULE_P13, 1, IfxPort_Mode_outputPushPullGeneral);     /* LED108 */
-	// IfxPort_setPinHigh(&MODULE_P13, 1);
-	// IfxPort_setPinMode(&MODULE_P13, 2, IfxPort_Mode_outputPushPullGeneral);     /* LED109 */
-	// IfxPort_setPinHigh(&MODULE_P13, 2);
-	// IfxPort_setPinMode(&MODULE_P13, 3, IfxPort_Mode_outputPushPullGeneral);     /* LED110 */
-	// IfxPort_setPinHigh(&MODULE_P13, 3);
+	IfxPort_setPinMode(&MODULE_P13, 0, IfxPort_Mode_outputPushPullGeneral);     /* LED107 */
+	IfxPort_setPinHigh(&MODULE_P13, 0);
+	IfxPort_setPinMode(&MODULE_P13, 1, IfxPort_Mode_outputPushPullGeneral);     /* LED108 */
+	IfxPort_setPinHigh(&MODULE_P13, 1);
+	IfxPort_setPinMode(&MODULE_P13, 2, IfxPort_Mode_outputPushPullGeneral);     /* LED109 */
+	IfxPort_setPinHigh(&MODULE_P13, 2);
+	IfxPort_setPinMode(&MODULE_P13, 3, IfxPort_Mode_outputPushPullGeneral);     /* LED110 */
+	IfxPort_setPinHigh(&MODULE_P13, 3);
 	
-	// IfxPort_setPinMode(&MODULE_P33, 7, IfxPort_Mode_outputPushPullGeneral);     /* LED107 */
-	// IfxPort_setPinLow(&MODULE_P33, 7);
+	IfxPort_setPinMode(&MODULE_P33, 7, IfxPort_Mode_outputPushPullGeneral);     /* LED107 */
+	IfxPort_setPinLow(&MODULE_P33, 7);
 	/* Initialize SPI interfaces */
 	PmsmFoc_Qspi_initQspi();
 
@@ -84,21 +84,21 @@ void PmsmFoc_initHardware()
 
 		/* TLF35584 (Power and WDT ASIC) init */
 		PmsmFoc_Tlf35584_Init();        /* This requires connected SPI module Initialized before */
-		//IfxTLF35584_unprotectRegister();
-		//IfxTLF35584_disableWindowWatchdog();
-		//IfxTLF35584_disableErrPinMonitor();
-		//IfxTLF35584_protectRegister();
+		IfxTLF35584_unprotectRegister();
+		IfxTLF35584_disableWindowWatchdog();
+		IfxTLF35584_disableErrPinMonitor();
+		IfxTLF35584_protectRegister();
 		/* Switch TLF to normal state */
-		//IfxTLF35584_gotoNormalState();
+		IfxTLF35584_gotoNormalState();
 
 		IfxCpu_disableInterrupts();
 	}
 
 	/* Initialize time constants for Time functions, see bsp.c */
-	//initTime();
+	initTime();
 
 	/* Initialize TLE9180, this requires connected SPI module initialized before */
-	//PmsmFoc_Tle9180_Init();
+	PmsmFoc_Tle9180_Init();
 
     /* Initialize GTM Driver */
 	//PmsmFoc_Gtm_initGtm(&motorCtrl->inverter);
@@ -110,9 +110,9 @@ void PmsmFoc_initHardware()
 	//PmsmFoc_PositionAcquisition_init(&motorCtrl->positionSensor, PositionAcquisition_SensorType_Encoder);
 
 	/* Send startup configuration to TLE9180D */
-    //IfxCpu_enableInterrupts();
-    //PmsmFoc_Tle9180_loadConfiguration();
-    //IfxCpu_disableInterrupts();
+    IfxCpu_enableInterrupts();
+    PmsmFoc_Tle9180_loadConfiguration();
+    IfxCpu_disableInterrupts();
 
 }
 

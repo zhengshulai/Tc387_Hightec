@@ -28,6 +28,15 @@ extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tlf35584_ErrIsr;
 extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tlf35584_ErrIsr;
 
 
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tle9180_TxIsr;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tle9180_TxIsr;
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tle9180_RxIsr;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tle9180_RxIsr;
+
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tle9180_ErrIsr;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tle9180_ErrIsr;
+
 
 
 

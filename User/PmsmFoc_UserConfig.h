@@ -143,9 +143,9 @@
  * CUSTOM_MOTOR
  *
 */
-// #if(PMSM_FOC_HARDWARE_KIT == KIT_A2G_TC387_MOTORCTRL)
+#if(PMSM_FOC_HARDWARE_KIT == KIT_A2G_TC387_MOTORCTRL)
 // #define MCUCARD_TYPE                                      APP_KIT_TFT_TC387A
-// #define MCUCARD_TYPE_PATH                                 "PmsmFoc_AppKitTft_TC387A.h"
+#define MCUCARD_TYPE_PATH                                 "PmsmFoc_AppKitTft_TC387A.h"
 // #define INVERTERCARD_TYPE                                 EMOTOR_DRIVE_V_3_1
 // #define INVERTERCARD_TYPE_PATH                            "PmsmFoc_EMotorDrive_v_3_1.h"
 // #define MOTOR_TYPE                                        NANOTEC_MOTOR_DB42S02
@@ -158,7 +158,7 @@
 // #define INVERTERCARD_TYPE_PATH                            "PmsmFoc_CUSTOM_INVERTER.h" 	/* Shall be added by user */
 // #define MOTOR_TYPE                                        CUSTOM_MOTOR
 // #define MOTOR_TYPE_PATH                                   "PmsmFoc_CUSTOM_MOTOR.h" 		/* Shall be added by user */
-// #endif
+#endif
 
 
 /******************************************************************************/

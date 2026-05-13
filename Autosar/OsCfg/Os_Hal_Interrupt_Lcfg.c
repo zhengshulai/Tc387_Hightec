@@ -70,6 +70,39 @@ const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tlf35584_ErrIsr =
 };
 
 
+//tle9180---------------------
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tle9180_TxIsr = 
+{
+	/*Level            =*/50,
+	/*Source           =*/0x140,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tle9180_TxIsr = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tle9180_RxIsr = 
+{
+	/*Level            =*/51,
+	/*Source           =*/0x144,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tle9180_RxIsr = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Tle9180_ErrIsr = 
+{
+	/*Level            =*/52,
+	/*Source           =*/0x148,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tle9180_ErrIsr = 
+{
+	/*Dummy      =*/(uint32)0
+};
 
 
 

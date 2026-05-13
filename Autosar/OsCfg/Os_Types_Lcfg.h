@@ -39,7 +39,9 @@
 #define Tlf35584_RxIsr            Tlf35584_RxIsr
 #define Tlf35584_ErrIsr           Tlf35584_ErrIsr
 
-
+#define Tle9180_TxIsr             Tle9180_TxIsr
+#define Tle9180_RxIsr             Tle9180_RxIsr
+#define Tle9180_ErrIsr            Tle9180_ErrIsr
 
 
 
@@ -124,7 +126,10 @@ typedef enum
     Tlf35584_TxIsr = 8,
 	Tlf35584_RxIsr = 9,
 	Tlf35584_ErrIsr = 10,
-	OS_ISRID_COUNT = 11,
+    Tle9180_TxIsr = 11,
+	Tle9180_RxIsr = 12,
+	Tle9180_ErrIsr = 13,
+	OS_ISRID_COUNT = 14,
 	INVALID_ISR = OS_ISRID_COUNT
 }ISRType;
 

@@ -88,5 +88,7 @@ extern IfxQspi_SpiMaster           spiMasterQspi4;
 extern void Os_Isr_Qspi_Tlf35584_TxIsr();
 extern void Os_Isr_Qspi_Tlf35584_RxIsr();
 extern void Os_Isr_Qspi_Tlf35584_ErrIsr();
-
+extern void Os_Isr_Qspi_Tle9180_TxIsr();
+extern void Os_Isr_Qspi_Tle9180_RxIsr();
+extern void Os_Isr_Qspi_Tle9180_ErrIsr();
 #endif /* PMSMFOC_INTERRUPTS_H_ */

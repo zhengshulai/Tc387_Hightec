@@ -565,7 +565,7 @@ void IfxQspi_SpiMaster_initModuleConfig(IfxQspi_SpiMaster_Config *config, Ifx_QS
     config->dma.rxDmaChannelId         = IfxDma_ChannelId_none;
     config->dma.txDmaChannelId         = IfxDma_ChannelId_none;
     config->dma.useDma                 = FALSE;
-    config->base.maximumBaudrate       = 1500000;
+    config->base.maximumBaudrate       = 50000000;
 }
 
 

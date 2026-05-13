@@ -77,7 +77,7 @@ IFX_INLINE void PmsmFoc_Qspi_initQspi2(void)
 		IfxPort_PadDriver_cmosAutomotiveSpeed1
 	};
 	/* set the maximum baudrate */
-	spiConfig.base.maximumBaudrate = 1.5e6;
+	spiConfig.base.maximumBaudrate = 1e6;
 
 	/* ISR priorities and interrupt target */
 	spiConfig.base.txPriority    = INTERRUPT_PRIORITY_QSPI2_TX;
@@ -104,47 +104,47 @@ IFX_INLINE void PmsmFoc_Qspi_initQspi2(void)
 /** \brief Initialize QSPI4 Module
  *
  */
-// IFX_INLINE void PmsmFoc_Qspi_initQspi4(void)
-// {
-	// /* create SPI4 module config */
-	// IfxQspi_SpiMaster_Config        spiConfig;
-	// IfxQspi_SpiMaster_initModuleConfig(&spiConfig, &SPI_4_MODULE);
+IFX_INLINE void PmsmFoc_Qspi_initQspi4(void)
+{
+	/* create SPI4 module config */
+	IfxQspi_SpiMaster_Config        spiConfig;
+	IfxQspi_SpiMaster_initModuleConfig(&spiConfig, &SPI_4_MODULE);
 
-	// /* pin configuration */
-	// const IfxQspi_SpiMaster_Pins spiPins =
+	/* pin configuration */
+	const IfxQspi_SpiMaster_Pins spiPins =
+	{
+		&SPI_4_CLOCK_PIN,  IfxPort_OutputMode_pushPull,
+		&SPI_4_MOSI_PIN,  IfxPort_OutputMode_pushPull,
+		&SPI_4_MISO_PIN,  IfxPort_InputMode_pullDown,
+		IfxPort_PadDriver_cmosAutomotiveSpeed1
+	};
+
+	/* set the maximum baudrate */
+	spiConfig.base.maximumBaudrate = 28.0e6;
+
+	/* ISR priorities and interrupt target */
+	spiConfig.base.txPriority    = INTERRUPT_PRIORITY_QSPI4_TX;
+	spiConfig.base.rxPriority    = INTERRUPT_PRIORITY_QSPI4_RX;
+	spiConfig.base.erPriority    = INTERRUPT_PRIORITY_QSPI4_ERR;
+	spiConfig.base.isrProvider   = SPI_4_HOST_CPU;
+#if (SPI_4_USE_DMA == TRUE)
+	spiConfig.dma.txDmaChannelId = SPI_4_TX_DMA_CH;
+	spiConfig.dma.rxDmaChannelId = SPI_4_RX_DMA_CH;
+	spiConfig.dma.useDma         = TRUE;
+#endif
+	spiConfig.pins = &spiPins;
+
+	/* initialize module */
+	IfxQspi_SpiMaster_initModule(&spiMasterQspi4, &spiConfig);
+
+	// IfxPort_setPinPadDriver(spiConfig.pins->mrst->pin.port, spiConfig.pins->mrst->pin.pinIndex, spiConfig.pins->pinDriver);
+
 	// {
-		// &SPI_4_CLOCK_PIN,  IfxPort_OutputMode_pushPull,
-		// &SPI_4_MOSI_PIN,  IfxPort_OutputMode_pushPull,
-		// &SPI_4_MISO_PIN,  IfxPort_InputMode_pullDown,
-		// IfxPort_PadDriver_cmosAutomotiveSpeed1
-	// };
-
-	// /* set the maximum baudrate */
-	// spiConfig.base.maximumBaudrate = 50.0e6;
-
-	// /* ISR priorities and interrupt target */
-	// spiConfig.base.txPriority    = INTERRUPT_PRIORITY_QSPI4_TX;
-	// spiConfig.base.rxPriority    = INTERRUPT_PRIORITY_QSPI4_RX;
-	// spiConfig.base.erPriority    = INTERRUPT_PRIORITY_QSPI4_ERR;
-	// spiConfig.base.isrProvider   = SPI_4_HOST_CPU;
-// #if (SPI_4_USE_DMA == TRUE)
-	// spiConfig.dma.txDmaChannelId = SPI_4_TX_DMA_CH;
-	// spiConfig.dma.rxDmaChannelId = SPI_4_RX_DMA_CH;
-	// spiConfig.dma.useDma         = TRUE;
-// #endif
-	// spiConfig.pins = &spiPins;
-
-	// /* initialize module */
-	// IfxQspi_SpiMaster_initModule(&spiMasterQspi4, &spiConfig);
-
-// //	IfxPort_setPinPadDriver(spiConfig.pins->mrst->pin.port, spiConfig.pins->mrst->pin.pinIndex, spiConfig.pins->pinDriver);
-
-// //	{
-// //		volatile Ifx_SRC_SRCR *src = IfxQspi_getErrorSrc(&MODULE_QSPI4);
-// //		IfxSrc_init(src, SPI_4_HOST_CPU, INTERRUPT_QSPI4_ERR);
-// //		IfxSrc_enable(src);
-// //	}
-// }
+		// volatile Ifx_SRC_SRCR *src = IfxQspi_getErrorSrc(&MODULE_QSPI4);
+		// IfxSrc_init(src, SPI_4_HOST_CPU, INTERRUPT_QSPI4_ERR);
+		// IfxSrc_enable(src);
+	// }
+}
 
 
 
@@ -154,7 +154,7 @@ IFX_INLINE void PmsmFoc_Qspi_initQspi2(void)
 void PmsmFoc_Qspi_initQspi(void)
 {
 	PmsmFoc_Qspi_initQspi2();
-	//PmsmFoc_Qspi_initQspi4();
+	PmsmFoc_Qspi_initQspi4();
 }
 
 

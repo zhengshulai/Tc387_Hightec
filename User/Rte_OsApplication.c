@@ -6,6 +6,8 @@
 
 #include "Mcu_Init.h"
 #include "TLF35584.h"
+#include "PmsmFoc_InitTLE9180.h"
+
 volatile uint8 Test_Os_Core0_Cnt = 0;
 volatile uint8 Test_Os_Core1_Cnt = 0;
 volatile uint8 Test_Os_Core2_Cnt = 0;
@@ -76,7 +78,8 @@ void Os_Task_Core0_10ms_Task(void)
 		if((ev & Rte_Ev_Cyclic2_Core0_10ms_Task_0_10ms) != (EventMaskType)0)
 		{
 			Test_Os_Core0_Cnt++;
-			IfxTLF35584_readWrite(0x3E01);
+			//IfxTLF35584_readWrite(0x4E00);
+			main_Tle9180_test();
 		}
 	}
 }

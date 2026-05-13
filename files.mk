@@ -48,8 +48,8 @@ SERVICE_SysSe	         := Assert.c Bsp.c Ifx_AngleTrkF32.c Ifx_Cf32.c Ifx_Consol
 					        Ifx_LutSincosF32_Table.c Ifx_RampF32.c Ifx_Shell.c Ifx_WndF32_BlackmanHarrisTable.c Ifx_WndF32_HannTable.c
 USER		             := Cpu0_Main.c Cpu1_Main.c Cpu2_Main.c Cpu3_Main.c Rte_OsApplication.c
 USER_MCUINIT             := Mcu_Init.c Qspi_Init.c
-USER_EXTDEVINIT          := PmsmFoc_InitTLF35584.c
-USER_EXTDEVDRIVERS       := TLF35584.c
+USER_EXTDEVINIT          := PmsmFoc_InitTLF35584.c PmsmFoc_InitTLE9180.c
+USER_EXTDEVDRIVERS       := TLF35584.c TLE9180.c
 USER_INTERRUPTS          := PmsmFoc_Interrupts.c
 AUTOSAR_OS		         := Os_AccessCheck.c Os_Alarm.c Os_Application.c Os_Barrier.c Os_Bit.c Os_BitArray.c Os_Core.c Os_Counter.c Os_Deque.c Os_Error.c Os_Event.c Os_Fifo.c\
                             Os_Fifo08.c Os_Fifo16.c Os_Fifo32.c Os_FifoRef.c Os_Hal_Compiler_Diab.c Os_Hal_Compiler_Greenhills.c Os_Hal_Compiler_HighTec.c Os_Hal_Compiler_Tasking.c\

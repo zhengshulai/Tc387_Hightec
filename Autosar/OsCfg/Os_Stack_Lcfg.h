@@ -25,6 +25,9 @@ extern Os_Hal_StackType OsCfg_Stack_OsCore0_Task_Prio4294967295_Dyn[(1024+16)/4]
 extern Os_Hal_StackType OsCfg_Stack_Tlf35584_TxIsr_Dyn[(2048+16)/4];
 extern Os_Hal_StackType OsCfg_Stack_Tlf35584_RxIsr_Dyn[(2048+16)/4];
 extern Os_Hal_StackType OsCfg_Stack_Tlf35584_ErrIsr_Dyn[(2048+16)/4];
+extern Os_Hal_StackType OsCfg_Stack_Tle9180_TxIsr_Dyn[(2048+16)/4];
+extern Os_Hal_StackType OsCfg_Stack_Tle9180_RxIsr_Dyn[(2048+16)/4];
+extern Os_Hal_StackType OsCfg_Stack_Tle9180_ErrIsr_Dyn[(2048+16)/4];
 
 extern Os_Hal_StackType OsCfg_Stack_OsCore1_Error_Dyn[(1024+16)/4];
 extern Os_Hal_StackType OsCfg_Stack_OsCore1_Init_Dyn[(1024+16)/4];
@@ -61,7 +64,9 @@ extern const Os_StackConfigType OsCfg_Stack_OsCore0_Task_Prio4294967295;
 extern const Os_StackConfigType OsCfg_Stack_Tlf35584_TxIsr;
 extern const Os_StackConfigType OsCfg_Stack_Tlf35584_RxIsr;
 extern const Os_StackConfigType OsCfg_Stack_Tlf35584_ErrIsr;
-
+extern const Os_StackConfigType OsCfg_Stack_Tle9180_TxIsr;
+extern const Os_StackConfigType OsCfg_Stack_Tle9180_RxIsr;
+extern const Os_StackConfigType OsCfg_Stack_Tle9180_ErrIsr;
 /************************************************************Core1*********************************************************/
 extern const Os_StackConfigType OsCfg_Stack_Core1_10ms_Task;
 extern const Os_StackConfigType OsCfg_Stack_OsCore1_Error;

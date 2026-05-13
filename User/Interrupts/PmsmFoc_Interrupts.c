@@ -83,3 +83,30 @@ void Os_Isr_Qspi_Tlf35584_ErrIsr()
 	IfxCpu_enableInterrupts();
 	IfxQspi_SpiMaster_isrError(&spiMasterQspi2);
 }
+
+
+void Os_Isr_Qspi_Tle9180_TxIsr()
+{
+	IfxCpu_enableInterrupts();
+#if (SPI_4_USE_DMA == TRUE)
+	IfxQspi_SpiMaster_isrDmaTransmit(&spiMasterQspi4);
+#else
+	IfxQspi_SpiMaster_isrTransmit(&spiMasterQspi4);
+#endif
+}
+
+void Os_Isr_Qspi_Tle9180_RxIsr()
+{
+	IfxCpu_enableInterrupts();
+#if (SPI_4_USE_DMA == TRUE)
+	IfxQspi_SpiMaster_isrDmaReceive(&spiMasterQspi4);
+#else
+	IfxQspi_SpiMaster_isrReceive(&spiMasterQspi4);
+#endif
+}
+
+void Os_Isr_Qspi_Tle9180_ErrIsr()
+{
+	IfxCpu_enableInterrupts();
+	IfxQspi_SpiMaster_isrError(&spiMasterQspi4);
+}

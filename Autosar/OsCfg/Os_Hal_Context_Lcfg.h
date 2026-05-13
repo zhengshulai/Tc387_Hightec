@@ -40,6 +40,15 @@ extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Tlf35584_RxIsr_Dyn;
 extern Os_Hal_ContextType OsCfg_Hal_Context_Tlf35584_ErrIsr_Dyn;
 extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Tlf35584_ErrIsr_Dyn;
 
+extern Os_Hal_ContextType OsCfg_Hal_Context_Tle9180_TxIsr_Dyn;
+extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Tle9180_TxIsr_Dyn;
+
+extern Os_Hal_ContextType OsCfg_Hal_Context_Tle9180_RxIsr_Dyn;
+extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Tle9180_RxIsr_Dyn;
+
+extern Os_Hal_ContextType OsCfg_Hal_Context_Tle9180_ErrIsr_Dyn;
+extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Tle9180_ErrIsr_Dyn;
+
 /*******************************************Core1*******************************************/
 extern Os_Hal_ContextType OsCfg_Hal_Context_Os_CoreInitHook_OsCore1_Dyn;
 extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Os_CoreInitHook_OsCore1_Dyn;
@@ -133,6 +142,9 @@ extern const Os_Hal_ContextStackConfigType OsCfg_Hal_Stack_OsCore0_Kernel;
 extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_Tlf35584_TxIsr;
 extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_Tlf35584_RxIsr;
 extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_Tlf35584_ErrIsr;
+extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_Tle9180_TxIsr;
+extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_Tle9180_RxIsr;
+extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_Tle9180_ErrIsr;
 /**********************************************************************Core1***********************************************************************/
 extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_Os_CoreInitHook_OsCore1;
 extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_ErrorHook_OsCore1;

@@ -1,6 +1,6 @@
 /**
- * \file TLF35584_Init.c
- * \brief Initialization of TLF35584 ASIC.
+ * \file TLE9180_Init.h
+ * \brief Initialization of TLE9180 ASIC.
  *
  * \copyright Copyright (C) Infineon Technologies AG 2019
  *
@@ -35,60 +35,79 @@
  *
  */
 
-#include "PmsmFoc_InitTLF35584.h"
+#include "PmsmFoc_InitTLE9180.h"
 #include "Qspi_Init.h"
+#include "IfxPort_PinMap.h"
 
+
+#include "PmsmFoc_UserConfig.h"
+#include MCUCARD_TYPE_PATH
+//#include INVERTERCARD_TYPE_PATH
+//#include MOTOR_TYPE_PATH
 /******************************************************************************/
 /*------------------------------Global variables------------------------------*/
 /******************************************************************************/
-TLF35584 tlf35584;
+TLE9180 tle9180;
 
 /******************************************************************************/
 /*-------------------------Function Implementations---------------------------*/
 /******************************************************************************/
 
-IFX_INLINE void PmsmFoc_Tlf35584_InitSpiChannel(void)
-{
+IFX_INLINE void PmsmFoc_Tle9180_InitSpiChannel(void)
+// Configure SPI Channels for Motor Control Module
+{   // Configuration for TLE9180 communication
+	/* create channel config */
 	IfxQspi_SpiMaster_ChannelConfig spiChConfig;
-    boolean interruptState = IfxCpu_disableInterrupts();
-	IfxQspi_SpiMaster_initChannelConfig(&spiChConfig, &TLF35584_SPI);
+	IfxQspi_SpiMaster_initChannelConfig(&spiChConfig, &TLE9180_SPI);
 
-    /* set the baudrate for this channel */
-    spiChConfig.base.baudrate = IFX_TLF35584_BAUDRATE;
+	/* set the baudrate for this channel */
+	spiChConfig.base.baudrate = IFX_TLE9180_BAUDRATE;
 
-    /* set the transfer data width */
-    spiChConfig.base.mode.dataWidth = IFX_TLF35584_DATAWIDTH;
+	/* set the transfer data width */
+	spiChConfig.base.mode.dataWidth = IFX_TLE9180_DATAWIDTH;
 
-    spiChConfig.base.mode.csTrailDelay = 1;
-    spiChConfig.base.mode.csInactiveDelay = 1;
-    spiChConfig.base.mode.shiftClock = SpiIf_ShiftClock_shiftTransmitDataOnTrailingEdge;
+	spiChConfig.base.mode.csTrailDelay = SpiIf_SlsoTiming_1;
+	spiChConfig.base.mode.csInactiveDelay = SpiIf_SlsoTiming_7;
+	spiChConfig.base.mode.shiftClock = SpiIf_ShiftClock_shiftTransmitDataOnTrailingEdge;
 
-    spiChConfig.sls.output.pin    = &TLF35584_SPI_CS_PIN;
-    spiChConfig.sls.output.mode   = IfxPort_OutputMode_pushPull;
-    spiChConfig.sls.output.driver = IfxPort_PadDriver_cmosAutomotiveSpeed1;
+	spiChConfig.sls.output.pin    = &TLE9180_SPI_CS_PIN;
+	spiChConfig.sls.output.mode   = IfxPort_OutputMode_pushPull;
+	spiChConfig.sls.output.driver = IfxPort_PadDriver_cmosAutomotiveSpeed1;
 
-    /* initialize channel */
-    IfxQspi_SpiMaster_initChannel(&tlf35584.spiChannel, &spiChConfig);
+	spiChConfig.channelBasedCs= IfxQspi_SpiMaster_ChannelBasedCs_enabled;
 
-    /* enable interrupts again */
-    IfxCpu_restoreInterrupts(interruptState);
+	/* initialize channel */
+	IfxQspi_SpiMaster_initChannel(&tle9180.spiChannel, &spiChConfig);
 }
 
-
-/** \brief Initialization for TLF35584
+/** Tle9180 configuration */
+/** \brief Initialization for TLE9180
  *
  */
 
-void PmsmFoc_Tlf35584_Init(void)
+void PmsmFoc_Tle9180_Init(void)
 {
-	PmsmFoc_Tlf35584_InitSpiChannel();
-	{
-		IfxTLF35584_Config tlfConfig;
+	IfxTLE9180_Config tleConfig;
 
-		tlfConfig.spiChannel= &tlf35584.spiChannel;
-		tlfConfig.spiIf.spiGetStatus= (IfxTLF35584_SpiGetStatusIfPtrType)&IfxQspi_SpiMaster_getStatus;
-		tlfConfig.spiIf.spiExchange= (IfxTLF35584_SpiExchangeIfPtrType)&IfxQspi_SpiMaster_exchange;
-		IfxTLF35584_init(&tlf35584.driver, &tlfConfig);
-	}
+	PmsmFoc_Tle9180_InitSpiChannel();
+
+	tleConfig.size= 8192;
+
+	tleConfig.pins.enable= TLE9180_ENABLE_PIN;
+	tleConfig.pins.error= TLE9180_ERROR_PIN;
+	tleConfig.pins.inhibit= TLE9180_INHIBIT_PIN;
+	tleConfig.pins.safeOff= TLE9180_SAFEOFF_PIN;
+
+	tleConfig.spiChannel= &tle9180.spiChannel;
+
+	/*Configure the SPI interfaces as QSPI Master Interfaces*/
+	tleConfig.spiIf.spiExchange= (IfxTLE9180_SpiExchangeIfPtrType)&IfxQspi_SpiMaster_exchange;     //For TLF9180 only SPI Exchange API is required
+
+	IfxTLE9180_init(&tle9180.driver, &tleConfig);
 }
 
+void main_Tle9180_test(void)
+{
+	tle9180.driver.readIndex = 0;
+	IfxTLE9180_readRegister(&tle9180.driver);
+}

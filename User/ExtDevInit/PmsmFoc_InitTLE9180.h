@@ -1,6 +1,6 @@
 /**
- * \file TLF35584_Init.c
- * \brief Initialization of TLF35584 ASIC.
+ * \file TLE9180_Init.h
+ * \brief Initialization of TLE9180 ASIC.
  *
  * \copyright Copyright (C) Infineon Technologies AG 2019
  *
@@ -35,60 +35,47 @@
  *
  */
 
-#include "PmsmFoc_InitTLF35584.h"
-#include "Qspi_Init.h"
+#ifndef _TLE9180_INIT_H_
+#define _TLE9180_INIT_H_
+
+#include "TLE9180.h"
+/******************************************************************************/
+/*-----------------------------------Macros-----------------------------------*/
+/******************************************************************************/
+#define TLE9180_SPI                      spiMasterQspi4           /**< \brief SPI Configurations for TLE9180 Channel */
+#define TLE9180_SPI_CS_PIN               IfxQspi4_SLSO3_P22_2_OUT
+/******************************************************************************/
+/*-------------------------------Data Structures------------------------------*/
+/******************************************************************************/
+typedef struct
+{
+	IfxTLE9180                  driver;
+	IfxQspi_SpiMaster_Channel   spiChannel;
+} TLE9180;
 
 /******************************************************************************/
 /*------------------------------Global variables------------------------------*/
 /******************************************************************************/
-TLF35584 tlf35584;
+
+extern TLE9180 tle9180;
 
 /******************************************************************************/
-/*-------------------------Function Implementations---------------------------*/
+/*-----------------------------Function Prototypes----------------------------*/
 /******************************************************************************/
 
-IFX_INLINE void PmsmFoc_Tlf35584_InitSpiChannel(void)
-{
-	IfxQspi_SpiMaster_ChannelConfig spiChConfig;
-    boolean interruptState = IfxCpu_disableInterrupts();
-	IfxQspi_SpiMaster_initChannelConfig(&spiChConfig, &TLF35584_SPI);
-
-    /* set the baudrate for this channel */
-    spiChConfig.base.baudrate = IFX_TLF35584_BAUDRATE;
-
-    /* set the transfer data width */
-    spiChConfig.base.mode.dataWidth = IFX_TLF35584_DATAWIDTH;
-
-    spiChConfig.base.mode.csTrailDelay = 1;
-    spiChConfig.base.mode.csInactiveDelay = 1;
-    spiChConfig.base.mode.shiftClock = SpiIf_ShiftClock_shiftTransmitDataOnTrailingEdge;
-
-    spiChConfig.sls.output.pin    = &TLF35584_SPI_CS_PIN;
-    spiChConfig.sls.output.mode   = IfxPort_OutputMode_pushPull;
-    spiChConfig.sls.output.driver = IfxPort_PadDriver_cmosAutomotiveSpeed1;
-
-    /* initialize channel */
-    IfxQspi_SpiMaster_initChannel(&tlf35584.spiChannel, &spiChConfig);
-
-    /* enable interrupts again */
-    IfxCpu_restoreInterrupts(interruptState);
-}
-
-
-/** \brief Initialization for TLF35584
+extern void PmsmFoc_Tle9180_Init(void);
+extern void main_Tle9180_test(void);
+/** /brief
  *
+ * /param
+ * /return
+ * /note
+ * /see
+ * /ingroup
  */
-
-void PmsmFoc_Tlf35584_Init(void)
+IFX_INLINE void PmsmFoc_Tle9180_loadConfiguration(void)
 {
-	PmsmFoc_Tlf35584_InitSpiChannel();
-	{
-		IfxTLF35584_Config tlfConfig;
-
-		tlfConfig.spiChannel= &tlf35584.spiChannel;
-		tlfConfig.spiIf.spiGetStatus= (IfxTLF35584_SpiGetStatusIfPtrType)&IfxQspi_SpiMaster_getStatus;
-		tlfConfig.spiIf.spiExchange= (IfxTLF35584_SpiExchangeIfPtrType)&IfxQspi_SpiMaster_exchange;
-		IfxTLF35584_init(&tlf35584.driver, &tlfConfig);
-	}
+    IfxTLE9180_loadStartupConfiguration(&tle9180.driver);
 }
 
+#endif /* _TLE9180_INIT_H_ */

@@ -89,9 +89,9 @@ void IfxTLF35584_init(IfxTLF35584 *tlf35584, IfxTLF35584_Config *config)
 
 	/* first we check for A or B-step of TLF */
     /* we read the value from address 0x34 but ignore the returned value */
-    //IfxTLF35584_readWrite(0x6801);  /* read address 0x34 *//*bit15 cmd 0read 1write;  bit14-9 address;   bit1-8  data;  bit0  parity*/
+    IfxTLF35584_readWrite(0x6801);  /* read address 0x34 *//*bit15 cmd 0read 1write;  bit14-9 address;   bit1-8  data;  bit0  parity*/
     /* no we read the SPI status flags */
-	//qspi2_spisf = IfxTLF35584_readWrite(0x3E01);
+	qspi2_spisf = IfxTLF35584_readWrite(0x3E01);
     //if ((IfxTLF35584_readWrite(0x3E01)>>1) & 0x4)
 	if ((qspi2_spisf>>1) & 0x4)	
     {
@@ -256,8 +256,8 @@ void IfxTLF35584_gotoNormalState(void)
         IfxTLF35584_readWrite(0x9DD5);  /* DEVCTRL = 0xEA */
     else
     {
-        IfxTLF35584_readWrite(0xABD5);  /* DEVCTRL = 0xEA */
-        IfxTLF35584_readWrite(0xAC2B);  /* DEVCTRLN = ~0xEA */
+		IfxTLF35584_readWrite(0xABD5);  /* DEVCTRL = 0xEA */
+		IfxTLF35584_readWrite(0xAA2B);  /* DEVCTRLN = ~0xEA */
     }
 }
 
