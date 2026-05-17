@@ -106,6 +106,41 @@ const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Tle9180_ErrIsr =
 
 
 
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_CURR_G0CH0 = 
+{
+	/*Level            =*/100,
+	/*Source           =*/0x670,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_CURR_G0CH0 = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_VBEMF_G2CH3 = 
+{
+	/*Level            =*/98,
+	/*Source           =*/0x694,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_VBEMF_G2CH3 = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_VHVDC_G1CH3 = 
+{
+	/*Level            =*/99,
+	/*Source           =*/0x684,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_VHVDC_G1CH3 = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+
+
 
 const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_OsIsr_STM1_Ch0 = 
 {

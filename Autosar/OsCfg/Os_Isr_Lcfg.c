@@ -42,6 +42,10 @@ static Os_IsrType OsCfg_Isr_OsIsr_Tlf35584_ErrIsr_Dyn;
 static Os_IsrType OsCfg_Isr_OsIsr_Tle9180_TxIsr_Dyn;
 static Os_IsrType OsCfg_Isr_OsIsr_Tle9180_RxIsr_Dyn;
 static Os_IsrType OsCfg_Isr_OsIsr_Tle9180_ErrIsr_Dyn;
+
+static Os_IsrType OsCfg_Isr_OsIsr_CURR_G0CH0_Dyn;
+static Os_IsrType OsCfg_Isr_OsIsr_VBEMF_G2CH3_Dyn;
+static Os_IsrType OsCfg_Isr_OsIsr_VHVDC_G1CH3_Dyn;
 /**********************************************************Core0**********************************************************/
 const Os_IsrHwConfigType OsCfg_Isr_OsIsr_STM0_Ch0_HwConfig = 
 {
@@ -329,6 +333,107 @@ const Os_IsrConfigType OsCfg_Isr_OsIsr_Tle9180_ErrIsr =
 	/*IsEnabledOnInitialization    =*/FALSE
 };
 
+const Os_IsrHwConfigType OsCfg_Isr_OsIsr_CURR_G0CH0_HwConfig = 
+{
+	/*HwConfig                 =*/&OsCfg_Hal_IntIsr_CURR_G0CH0,
+	/*MapConfig                =*/&OsCfg_Hal_IntIsrMap_CURR_G0CH0,
+	/*IsMapped                 =*/FALSE,
+	/*IsPostActionRequired     =*/FALSE
+};
+
+const Os_IsrConfigType OsCfg_Isr_OsIsr_CURR_G0CH0 =
+{
+	//Thread
+	{
+		/*.ContextConfig           =*/&OsCfg_Hal_Context_CURR_G0CH0,
+		/*.Context                 =*/&OsCfg_Hal_Context_CURR_G0CH0_Dyn,
+		/*Stack                    =*/&OsCfg_Stack_CURR_G0CH0,
+		/*Dyn                      =*/OS_TASK_CASTDYN_TASK_2_THREAD(OsCfg_Isr_OsIsr_CURR_G0CH0_Dyn),
+		/*OwnerApplication         =*/&OsCfg_App_OsApplication_NonTrusted_Core0,
+		/*Core                     =*/&OsCfg_Core_OsCore0,
+		/*IntApiState              =*/&OsCfg_Core_OsCore0_Dyn.IntApiState,
+		/*TimerPortConfig          =*/NULL_PTR,
+		/*MpAccessRightsInitial    =*/NULL_PTR,
+		/*AccessRights             =*/&OsCfg_AccessCheck_NoAccess,
+		/*Trace                    =*/NULL_PTR,
+		/*FpuContext               =*/&OsCfg_Hal_FpuContext_CURR_G0CH0_Dyn,
+		/*InitialCallContext       =*/OS_CALLCONTEXT_ISR2,
+		/*PreThreadHook            =*/NULL_PTR,
+		/*InitDuringStartUp        =*/FALSE,
+		/*UsesFpu                  =*/TRUE			
+	},
+	/*SourceConfig                 =*/&OsCfg_Isr_OsIsr_CURR_G0CH0_HwConfig,
+	/*IsrId                        =*/CURR_G0CH0,
+	/*IsEnabledOnInitialization    =*/FALSE
+};
+
+const Os_IsrHwConfigType OsCfg_Isr_OsIsr_VBEMF_G2CH3_HwConfig = 
+{
+	/*HwConfig                 =*/&OsCfg_Hal_IntIsr_VBEMF_G2CH3,
+	/*MapConfig                =*/&OsCfg_Hal_IntIsrMap_VBEMF_G2CH3,
+	/*IsMapped                 =*/FALSE,
+	/*IsPostActionRequired     =*/FALSE
+};
+
+const Os_IsrConfigType OsCfg_Isr_OsIsr_VBEMF_G2CH3 =
+{
+	//Thread
+	{
+		/*.ContextConfig           =*/&OsCfg_Hal_Context_VBEMF_G2CH3,
+		/*.Context                 =*/&OsCfg_Hal_Context_VBEMF_G2CH3_Dyn,
+		/*Stack                    =*/&OsCfg_Stack_VBEMF_G2CH3,
+		/*Dyn                      =*/OS_TASK_CASTDYN_TASK_2_THREAD(OsCfg_Isr_OsIsr_VBEMF_G2CH3_Dyn),
+		/*OwnerApplication         =*/&OsCfg_App_OsApplication_NonTrusted_Core0,
+		/*Core                     =*/&OsCfg_Core_OsCore0,
+		/*IntApiState              =*/&OsCfg_Core_OsCore0_Dyn.IntApiState,
+		/*TimerPortConfig          =*/NULL_PTR,
+		/*MpAccessRightsInitial    =*/NULL_PTR,
+		/*AccessRights             =*/&OsCfg_AccessCheck_NoAccess,
+		/*Trace                    =*/NULL_PTR,
+		/*FpuContext               =*/&OsCfg_Hal_FpuContext_VBEMF_G2CH3_Dyn,
+		/*InitialCallContext       =*/OS_CALLCONTEXT_ISR2,
+		/*PreThreadHook            =*/NULL_PTR,
+		/*InitDuringStartUp        =*/FALSE,
+		/*UsesFpu                  =*/TRUE			
+	},
+	/*SourceConfig                 =*/&OsCfg_Isr_OsIsr_VBEMF_G2CH3_HwConfig,
+	/*IsrId                        =*/VBEMF_G2CH3,
+	/*IsEnabledOnInitialization    =*/FALSE
+};
+
+const Os_IsrHwConfigType OsCfg_Isr_OsIsr_VHVDC_G1CH3_HwConfig = 
+{
+	/*HwConfig                 =*/&OsCfg_Hal_IntIsr_VHVDC_G1CH3,
+	/*MapConfig                =*/&OsCfg_Hal_IntIsrMap_VHVDC_G1CH3,
+	/*IsMapped                 =*/FALSE,
+	/*IsPostActionRequired     =*/FALSE
+};
+
+const Os_IsrConfigType OsCfg_Isr_OsIsr_VHVDC_G1CH3 =
+{
+	//Thread
+	{
+		/*.ContextConfig           =*/&OsCfg_Hal_Context_VHVDC_G1CH3,
+		/*.Context                 =*/&OsCfg_Hal_Context_VHVDC_G1CH3_Dyn,
+		/*Stack                    =*/&OsCfg_Stack_VHVDC_G1CH3,
+		/*Dyn                      =*/OS_TASK_CASTDYN_TASK_2_THREAD(OsCfg_Isr_OsIsr_VHVDC_G1CH3_Dyn),
+		/*OwnerApplication         =*/&OsCfg_App_OsApplication_NonTrusted_Core0,
+		/*Core                     =*/&OsCfg_Core_OsCore0,
+		/*IntApiState              =*/&OsCfg_Core_OsCore0_Dyn.IntApiState,
+		/*TimerPortConfig          =*/NULL_PTR,
+		/*MpAccessRightsInitial    =*/NULL_PTR,
+		/*AccessRights             =*/&OsCfg_AccessCheck_NoAccess,
+		/*Trace                    =*/NULL_PTR,
+		/*FpuContext               =*/&OsCfg_Hal_FpuContext_VHVDC_G1CH3_Dyn,
+		/*InitialCallContext       =*/OS_CALLCONTEXT_ISR2,
+		/*PreThreadHook            =*/NULL_PTR,
+		/*InitDuringStartUp        =*/FALSE,
+		/*UsesFpu                  =*/TRUE			
+	},
+	/*SourceConfig                 =*/&OsCfg_Isr_OsIsr_VHVDC_G1CH3_HwConfig,
+	/*IsrId                        =*/VHVDC_G1CH3,
+	/*IsEnabledOnInitialization    =*/FALSE
+};
 /**********************************************************Core1**********************************************************/
 const Os_IsrHwConfigType OsCfg_Isr_OsIsr_STM1_Ch0_HwConfig = 
 {
@@ -573,7 +678,7 @@ const Os_XSigIsrConfigType OsCfg_Isr_XSignalIsr_OsCore3 =
 };
 
 
-const Os_IsrConfigType* const OsCfg_IsrRefs[15] = 
+const Os_IsrConfigType* const OsCfg_IsrRefs[18] = 
 {
 	OS_TIMER_CASTCONFIG_TIMERISR_2_ISR(OsCfg_Isr_OsIsr_STM0_Ch0),
 	OS_TIMER_CASTCONFIG_TIMERISR_2_ISR(OsCfg_Isr_OsIsr_STM1_Ch0),
@@ -589,5 +694,8 @@ const Os_IsrConfigType* const OsCfg_IsrRefs[15] =
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tle9180_TxIsr),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tle9180_RxIsr),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tle9180_ErrIsr),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_CURR_G0CH0),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_VBEMF_G2CH3),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_VHVDC_G1CH3),
 	NULL_PTR
 };

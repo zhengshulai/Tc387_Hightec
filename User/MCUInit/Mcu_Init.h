@@ -44,14 +44,14 @@
 /******************************************************************************/
 /*----------------------------------Includes----------------------------------*/
 /******************************************************************************/
-//#include "Evadc_Init.h"
-//#include "Gpt12_Init.h"
-//#include "Gtm_Init.h"
-//#include "Qspi_Init.h"
+#include "Evadc_Init.h"
+#include "Gpt12_Init.h"
+#include "Gtm_Init.h"
+#include "Qspi_Init.h"
 #include "PmsmFoc_InitTLF35584.h"
-//#include "PmsmFoc_InitTLE9180.h"
+#include "PmsmFoc_InitTLE9180.h"
 //#include "bsp.h"
-//#include "PmsmFoc_Functions.h"
+#include "PmsmFoc_Functions.h"
 #include "PmsmFoc_UserConfig.h"
 /******************************************************************************/
 /*-----------------------------------Macros-----------------------------------*/
@@ -84,7 +84,7 @@
  * /see
  * /ingroup
  */
-IFX_EXTERN void PmsmFoc_initHardware();
+IFX_EXTERN void PmsmFoc_initHardware(MotorControl* const motorCtrl);
 /******************************************************************************/
 /*-------------------------Inline Function Prototypes-------------------------*/
 /******************************************************************************/

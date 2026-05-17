@@ -56,7 +56,22 @@
  *
  */
 
+void Os_Isr_CURR_G0CH0()
+{
+	PmsmFoc_StateMacine_doControlLoop(&g_motorControl);
 
+	OneEye_osciStep();
+}
+
+void Os_Isr_VHVDC_G1CH3()
+{
+	PmsmFoc_DcLinkVoltageSense_getValue(&g_motorControl.inverter.dcLinkVoltageSense);
+}
+
+void Os_Isr_VBEMF_G2CH3()
+{
+	PmsmFoc_BemfVoltageSense_getValue(&g_motorControl.inverter.bemfVoltageSense);
+}
 
 void Os_Isr_Qspi_Tlf35584_TxIsr()
 {

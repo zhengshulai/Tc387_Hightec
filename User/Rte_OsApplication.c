@@ -7,6 +7,7 @@
 #include "Mcu_Init.h"
 #include "TLF35584.h"
 #include "PmsmFoc_InitTLE9180.h"
+#include "PmsmFoc_Functions.h"
 
 volatile uint8 Test_Os_Core0_Cnt = 0;
 volatile uint8 Test_Os_Core1_Cnt = 0;
@@ -21,6 +22,7 @@ volatile uint8 Rte_InitState_3 = 0;
 volatile uint8 Isr_Enable_Flag = 0;
 volatile uint8 Os_ThreadStartFirst_line = 0;
 
+MotorControl g_motorControl;
 
 void ErrorHook(StatusType Error)
 {
@@ -90,7 +92,7 @@ void Os_Task_OsHook_Init_Task_Core0(void)
 	const Os_IsrConfigType *pstIsrCfg;
 	const Os_ThreadConfigType *pstCurrentThread;	
 
-    PmsmFoc_initHardware();
+    PmsmFoc_initMotorControl(&g_motorControl);
 
 	SchM_Init();
 	while(Rte_InitState_0 != 2){}

@@ -29,6 +29,13 @@ extern const Os_IsrHwConfigType OsCfg_Isr_OsIsr_Tle9180_RxIsr_HwConfig;
 extern const Os_IsrConfigType OsCfg_Isr_OsIsr_Tle9180_RxIsr;
 extern const Os_IsrHwConfigType OsCfg_Isr_OsIsr_Tle9180_ErrIsr_HwConfig;
 extern const Os_IsrConfigType OsCfg_Isr_OsIsr_Tle9180_ErrIsr;
+
+extern const Os_IsrHwConfigType OsCfg_Isr_OsIsr_CURR_G0CH0_HwConfig;
+extern const Os_IsrConfigType OsCfg_Isr_OsIsr_CURR_G0CH0;
+extern const Os_IsrHwConfigType OsCfg_Isr_OsIsr_VBEMF_G2CH3_HwConfig;
+extern const Os_IsrConfigType OsCfg_Isr_OsIsr_VBEMF_G2CH3;
+extern const Os_IsrHwConfigType OsCfg_Isr_OsIsr_VHVDC_G1CH3_HwConfig;
+extern const Os_IsrConfigType OsCfg_Isr_OsIsr_VHVDC_G1CH3;
 /**********************************************************Core1**********************************************************/
 extern const Os_IsrHwConfigType OsCfg_Isr_OsIsr_STM1_Ch0_HwConfig;
 extern const Os_TimerIsrConfigType OsCfg_Isr_OsIsr_STM1_Ch0;
@@ -45,6 +52,6 @@ extern const Os_TimerIsrConfigType OsCfg_Isr_OsIsr_STM3_Ch0;
 extern const Os_IsrHwConfigType OsCfg_Isr_XSignalIsr_OsCore3_HwConfig;
 extern const Os_XSigIsrConfigType OsCfg_Isr_XSignalIsr_OsCore3;
 
-extern const Os_IsrConfigType* const OsCfg_IsrRefs[15];
+extern const Os_IsrConfigType* const OsCfg_IsrRefs[18];
 
 #endif

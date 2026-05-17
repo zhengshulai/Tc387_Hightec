@@ -61,6 +61,16 @@ Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Tle9180_RxIsr_Dyn;
 
 Os_Hal_ContextType OsCfg_Hal_Context_Tle9180_ErrIsr_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Tle9180_ErrIsr_Dyn;
+
+Os_Hal_ContextType OsCfg_Hal_Context_CURR_G0CH0_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_CURR_G0CH0_Dyn;
+
+Os_Hal_ContextType OsCfg_Hal_Context_VBEMF_G2CH3_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_VBEMF_G2CH3_Dyn;
+
+Os_Hal_ContextType OsCfg_Hal_Context_VHVDC_G1CH3_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_VHVDC_G1CH3_Dyn;
+
 /*******************************************Core1*******************************************/
 Os_Hal_ContextType OsCfg_Hal_Context_Os_CoreInitHook_OsCore1_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Os_CoreInitHook_OsCore1_Dyn;
@@ -257,6 +267,43 @@ const Os_Hal_ContextConfigType OsCfg_Hal_Context_Tle9180_ErrIsr =
 	/*ReturnAddress       =*/(uint32)&Os_TrapIsrEpilogue,
 	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
+
+
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_CURR_G0CH0 = 
+{
+	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_CURR_G0CH0_Dyn)+1),
+	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_CURR_G0CH0_Dyn)),
+	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
+	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
+	/*Entry               =*/(uint32)&Os_Isr_CURR_G0CH0,
+	/*ReturnAddress       =*/(uint32)&Os_TrapIsrEpilogue,
+	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
+};
+
+
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_VBEMF_G2CH3 = 
+{
+	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_VBEMF_G2CH3_Dyn)+1),
+	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_VBEMF_G2CH3_Dyn)),
+	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
+	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
+	/*Entry               =*/(uint32)&Os_Isr_VBEMF_G2CH3,
+	/*ReturnAddress       =*/(uint32)&Os_TrapIsrEpilogue,
+	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
+};
+
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_VHVDC_G1CH3 = 
+{
+	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_VHVDC_G1CH3_Dyn)+1),
+	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_VHVDC_G1CH3_Dyn)),
+	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
+	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
+	/*Entry               =*/(uint32)&Os_Isr_VHVDC_G1CH3,
+	/*ReturnAddress       =*/(uint32)&Os_TrapIsrEpilogue,
+	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
+};
+
+
 
 
 

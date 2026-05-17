@@ -107,7 +107,7 @@ const Os_Hal_Core2ThreadConfigType OsCfg_Hal_Core2Thread =
 const Os_Hal_SystemConfigType OsCfg_Hal_System = 0;
 
 
-const Os_IsrHwConfigType* const OsCfg_Hal_System_InterruptSourceRefs[15] = 
+const Os_IsrHwConfigType* const OsCfg_Hal_System_InterruptSourceRefs[18] = 
 {
 	&OsCfg_Isr_OsIsr_STM0_Ch0_HwConfig,
 	&OsCfg_Isr_OsIsr_STM1_Ch0_HwConfig,
@@ -123,5 +123,8 @@ const Os_IsrHwConfigType* const OsCfg_Hal_System_InterruptSourceRefs[15] =
 	&OsCfg_Isr_OsIsr_Tle9180_TxIsr_HwConfig,
 	&OsCfg_Isr_OsIsr_Tle9180_RxIsr_HwConfig,
 	&OsCfg_Isr_OsIsr_Tle9180_ErrIsr_HwConfig,
+	&OsCfg_Isr_OsIsr_CURR_G0CH0_HwConfig,
+	&OsCfg_Isr_OsIsr_VBEMF_G2CH3_HwConfig,
+	&OsCfg_Isr_OsIsr_VHVDC_G1CH3_HwConfig,
 	NULL_PTR
 };

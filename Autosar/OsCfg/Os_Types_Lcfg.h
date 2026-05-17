@@ -42,8 +42,9 @@
 #define Tle9180_TxIsr             Tle9180_TxIsr
 #define Tle9180_RxIsr             Tle9180_RxIsr
 #define Tle9180_ErrIsr            Tle9180_ErrIsr
-
-
+#define CURR_G0CH0                CURR_G0CH0
+#define VBEMF_G2CH3               VBEMF_G2CH3
+#define VHVDC_G1CH3               VHVDC_G1CH3
 
 #define Rte_Al_TE2_Core0_10ms_Task_0_10ms Rte_Al_TE2_Core0_10ms_Task_0_10ms
 #define Rte_Al_TE2_Core1_10ms_Task_0_10ms Rte_Al_TE2_Core1_10ms_Task_0_10ms
@@ -129,7 +130,10 @@ typedef enum
     Tle9180_TxIsr = 11,
 	Tle9180_RxIsr = 12,
 	Tle9180_ErrIsr = 13,
-	OS_ISRID_COUNT = 14,
+	CURR_G0CH0 = 14,
+	VBEMF_G2CH3 = 15,
+	VHVDC_G1CH3 = 16,
+	OS_ISRID_COUNT = 17,
 	INVALID_ISR = OS_ISRID_COUNT
 }ISRType;
 
