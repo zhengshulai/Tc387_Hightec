@@ -190,7 +190,7 @@ IFX_INLINE void PmsmFoc_Evadc_initGroup1(void)
     IfxEvadc_Adc_initGroupConfig(&adcGroupConfig, &adcEvadc.evadc);
 
     adcGroupConfig.groupId= IfxEvadc_GroupId_1;
-    adcGroupConfig.master= IfxEvadc_GroupId_1;
+    adcGroupConfig.master= IfxEvadc_GroupId_0;
 
     EVADC_INIT_INIT_GROUP1_QUEUE0(&adcGroupConfig);
     EVADC_INIT_INIT_GROUP1_QUEUE1(&adcGroupConfig);
@@ -208,7 +208,7 @@ IFX_INLINE void PmsmFoc_Evadc_initGroup2(void)
     IfxEvadc_Adc_initGroupConfig(&adcGroupConfig, &adcEvadc.evadc);
 
     adcGroupConfig.groupId= IfxEvadc_GroupId_2;
-    adcGroupConfig.master= IfxEvadc_GroupId_2;
+    adcGroupConfig.master= IfxEvadc_GroupId_0;
 
     EVADC_INIT_INIT_GROUP2_QUEUE0(&adcGroupConfig);
     EVADC_INIT_INIT_GROUP2_QUEUE1(&adcGroupConfig);
@@ -226,7 +226,7 @@ IFX_INLINE void PmsmFoc_Evadc_initGroup3(void)
     IfxEvadc_Adc_initGroupConfig(&adcGroupConfig, &adcEvadc.evadc);
 
     adcGroupConfig.groupId= IfxEvadc_GroupId_3;
-    adcGroupConfig.master= IfxEvadc_GroupId_3;
+    adcGroupConfig.master= IfxEvadc_GroupId_0;
 
     EVADC_INIT_INIT_GROUP3_QUEUE0(&adcGroupConfig);
     EVADC_INIT_INIT_GROUP3_QUEUE1(&adcGroupConfig);

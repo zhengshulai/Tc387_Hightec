@@ -44,7 +44,7 @@
 /******************************************************************************/
 #include "Ifx_Types.h"
 #include "IfxStdIf_Pos.h"
-#include "SysSe/Math/IFX_Cf32.h"
+#include "IFX_Cf32.h"
 #include "PmsmFoc_Functions.h"
 #include "PmsmFoc_VariablesScaling.h"
 #include "PmsmFoc_PwmSvm.h"

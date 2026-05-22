@@ -57,7 +57,7 @@
 #ifndef MC_INTEGER_H
 #define MC_INTEGER_H
 //------------------------------------------------------------------------------
-#include "Cpu/Std/Intrinsics.h"
+#include "Intrinsics.h"
 //------------------------------------------------------------------------------
 /** \brief Integer arithmetics: r = Value << Shift;
  * \ingroup integer_arithmetics

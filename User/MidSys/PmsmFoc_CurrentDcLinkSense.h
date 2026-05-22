@@ -49,7 +49,7 @@
 #include "Ifx_Types.h"
 #include "PmsmFoc_UserConfig.h"
 #include "Compilers.h"
-#include "Port/Std/IfxPort.h"
+#include "IfxPort.h"
 
 #include MCUCARD_TYPE_PATH
 #include INVERTERCARD_TYPE_PATH

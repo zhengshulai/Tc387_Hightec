@@ -58,9 +58,9 @@
 
 void Os_Isr_CURR_G0CH0()
 {
-	PmsmFoc_StateMacine_doControlLoop(&g_motorControl);
+	//PmsmFoc_StateMacine_doControlLoop(&g_motorControl);
 
-	OneEye_osciStep();
+	//OneEye_osciStep();
 }
 
 void Os_Isr_VHVDC_G1CH3()

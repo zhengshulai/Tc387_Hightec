@@ -48,7 +48,7 @@
 //---------------------------------------------------------------------------
 
 //#include "Configuration.h"
-#include "Cpu/Std/IfxCpu_Intrinsics.h"
+#include "IfxCpu_Intrinsics.h"
 #include "Arith.StdReal.h"
 #include "StdReal.h"
 //---------------------------------------------------------------------------

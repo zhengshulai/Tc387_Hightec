@@ -101,10 +101,10 @@ void PmsmFoc_initHardware(MotorControl* const motorCtrl)
 	PmsmFoc_Tle9180_Init();
 
     /* Initialize GTM Driver */
-	PmsmFoc_Gtm_initGtm(&motorCtrl->inverter);
+	//PmsmFoc_Gtm_initGtm(&motorCtrl->inverter);
 
     /* Initialize EVADC Driver */
-	PmsmFoc_Evadc_initEvadc(&motorCtrl->inverter);
+	//PmsmFoc_Evadc_initEvadc(&motorCtrl->inverter);
 
 	/* Initialize position sensor driver */
 	//PmsmFoc_PositionAcquisition_init(&motorCtrl->positionSensor, PositionAcquisition_SensorType_Encoder);

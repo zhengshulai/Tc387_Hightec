@@ -50,7 +50,7 @@
 #include "PmsmFoc_Inverter.h"
 #include "PmsmFoc_Motor.h"
 #include "PmsmFoc_PositionAndSpeedAcquisition.h"
-#include "SysSe/Math/Ifx_RampF32.h"
+#include "Ifx_RampF32.h"
 #include "Arith.StdReal.h"
 #include "MotorControl.h"
 #include "PmsmFoc_SpeedControl.h"

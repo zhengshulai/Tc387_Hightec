@@ -3,10 +3,9 @@
  * \brief Low pass filter PT1
  *
  * \version disabled
- * \copyright Copyright (c) 2013 Infineon Technologies AG. All rights reserved.
+ * \copyright Copyright (c) 2019 Infineon Technologies AG. All rights reserved.
  *
- *
- *                                 IMPORTANT NOTICE
+ *                            IMPORTANT NOTICE
  *
  * Use of this file is subject to the terms of use agreed between (i) you or
  * the company in which ordinary course of business you are acting and (ii)
@@ -36,6 +35,7 @@
  * FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  *
  * \defgroup library_srvsw_sysse_math_f32_lowpasspt1 Low-pass Filter: Type PT1
  * This module implements a PT1 low pass filter.

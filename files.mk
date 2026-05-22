@@ -45,12 +45,16 @@ SERVICE_If		         := SpiIf.c
 SERVICE_StdIf	         := IfxStdIf_DPipe.c IfxStdIf_Pos.c IfxStdIf_PwmHl.c IfxStdIf_Timer.c
 SERVICE_SysSe	         := Assert.c Bsp.c Ifx_AngleTrkF32.c Ifx_Cf32.c Ifx_Console.c Ifx_Crc.c Ifx_DateTime.c Ifx_FftF32.c Ifx_FftF32_BitReverseTable.c Ifx_FftF32_TwiddleTable.c\
                             Ifx_GlobalResources.c Ifx_IntegralF32.c Ifx_LowPassPt1F32.c Ifx_LutAtan2F32.c Ifx_LutAtan2F32_Table.c Ifx_LutLinearF32.c Ifx_LutLSincosF32.c\
-					        Ifx_LutSincosF32_Table.c Ifx_RampF32.c Ifx_Shell.c Ifx_WndF32_BlackmanHarrisTable.c Ifx_WndF32_HannTable.c
+					        Ifx_LutSincosF32_Table.c Ifx_RampF32.c Ifx_Shell.c Ifx_WndF32_BlackmanHarrisTable.c Ifx_WndF32_HannTable.c Ifx_PicF32.c
 USER		             := Cpu0_Main.c Cpu1_Main.c Cpu2_Main.c Cpu3_Main.c Rte_OsApplication.c
-USER_MCUINIT             := Mcu_Init.c Qspi_Init.c
+USER_MCUINIT             := Mcu_Init.c Qspi_Init.c Evadc_Init.c Gpt12_Init.c Gtm_Init.c 
 USER_EXTDEVINIT          := PmsmFoc_InitTLF35584.c PmsmFoc_InitTLE9180.c
 USER_EXTDEVDRIVERS       := TLF35584.c TLE9180.c
 USER_INTERRUPTS          := PmsmFoc_Interrupts.c
+USER_MIDSYS              := PmsmFoc_CurrentDcLinkSense.c PmsmFoc_CurrentThreeshuntSense.c PmsmFoc_PositionAndSpeedAcquisition.c PmsmFoc_PwmSvm.c PmsmFoc_SensorAdc.c PmsmFoc_VoltageSense.c
+USER_MATH                := Arith.FixPoint.Tasking.c
+USER_MOTORDRIVE          := Clarke.c Park.c SpaceVectorModulation.c Tables.c Tables_const.c
+USER_CONTROLMODULES      := PmsmFoc_Functions.c PmsmFoc_Interface.c PmsmFoc_SpeedControl.c PmsmFoc_StateMachine.c
 AUTOSAR_OS		         := Os_AccessCheck.c Os_Alarm.c Os_Application.c Os_Barrier.c Os_Bit.c Os_BitArray.c Os_Core.c Os_Counter.c Os_Deque.c Os_Error.c Os_Event.c Os_Fifo.c\
                             Os_Fifo08.c Os_Fifo16.c Os_Fifo32.c Os_FifoRef.c Os_Hal_Compiler_Diab.c Os_Hal_Compiler_Greenhills.c Os_Hal_Compiler_HighTec.c Os_Hal_Compiler_Tasking.c\
 						    Os_Hal_Context.c Os_Hal_Core.c Os_Hal_Entry.c Os_Hal_Trap.c Os_Hook.c Os_Interrupt.c Os_Ioc.c Os_Isr.c Os_Job.c Os_Lock.c Os_MemoryProtection.c\
@@ -114,6 +118,11 @@ USER_MCUINIT_PATH        := $(ROOT)User/MCUInit
 USER_EXTDEVINIT_PATH     := $(ROOT)User/ExtDevInit
 USER_EXTDEVDRIVERS_PATH  := $(ROOT)User/ExtDevDrivers
 USER_INTERRUPTS_PATH     := $(ROOT)User/Interrupts
+USER_MIDSYS_PATH         := $(ROOT)User/MidSys
+USER_MATH_PATH           := $(ROOT)User/Math
+USER_CONTROLMODULES_PATH := $(ROOT)User/ControlModules
+USER_MOTORDRIVE_PATH     := $(ROOT)User/MotorDrive
+USER_CONFIGURATION_PATH  := $(ROOT)User/Configuration
 AUTOSAR_OS_PATH          := $(ROOT)Autosar/Os
 AUTOSAR_OSCFG_PATH       := $(ROOT)Autosar/OsCfg
 OBJ_PATH                 := $(ROOT)Obj
@@ -167,6 +176,10 @@ CFILES                 += $(addprefix $(USER_MCUINIT_PATH)/,$(USER_MCUINIT))
 CFILES                 += $(addprefix $(USER_EXTDEVINIT_PATH)/,$(USER_EXTDEVINIT))
 CFILES                 += $(addprefix $(USER_EXTDEVDRIVERS_PATH)/,$(USER_EXTDEVDRIVERS))
 CFILES                 += $(addprefix $(USER_INTERRUPTS_PATH)/,$(USER_INTERRUPTS))
+CFILES                 += $(addprefix $(USER_MIDSYS_PATH)/,$(USER_MIDSYS))
+CFILES                 += $(addprefix $(USER_MATH_PATH)/,$(USER_MATH))
+CFILES                 += $(addprefix $(USER_CONTROLMODULES_PATH)/,$(USER_CONTROLMODULES))
+CFILES                 += $(addprefix $(USER_MOTORDRIVE_PATH)/,$(USER_MOTORDRIVE))
 CFILES                 += $(addprefix $(AUTOSAR_OS_PATH)/,$(AUTOSAR_OS))
 CFILES                 += $(addprefix $(AUTOSAR_OSCFG_PATH)/,$(AUTOSAR_OSCFG))
 
@@ -184,4 +197,5 @@ HEADERS                := $(CONFIGURATIONS_PATH) $(ILLD_Impl_PATH) $(ILLD_Lib_PA
                           $(SERVICE_If_PATH) $(SERVICE_StdIf_PATH) $(SERVICE_SysSe_PATH) $(USER_PATH)\
 						  $(INFRA_Reg_PATH) $(SERVICE_Utilities_PATH) $(ILLD_Port_PATH) $(AUTOSAR_OS_PATH)\
 						  $(AUTOSAR_OSCFG_PATH) $(USER_MCUINIT_PATH) $(USER_EXTDEVINIT_PATH) $(USER_EXTDEVDRIVERS_PATH)\
-						  $(USER_INTERRUPTS_PATH)
+						  $(USER_INTERRUPTS_PATH) $(USER_MIDSYS_PATH) $(USER_MATH_PATH) $(USER_CONTROLMODULES_PATH)\
+						  $(USER_MOTORDRIVE_PATH) $(USER_CONFIGURATION_PATH)

@@ -1,7 +1,7 @@
 /*
- * \file PmsmFoc_PositionAndSpeedAcquisition.h
+ * \file PmsmFoc_UserConfig.h
  * \brief
- * \ingroup
+ * \ingroup pmsm_foc_configuration
  * \version
  * \copyright Copyright (c) 2019 Infineon Technologies AG. All rights reserved.
  *
@@ -38,18 +38,128 @@
  *
  */
 
-#ifndef PMSM_FOC_POSITION_SPEED_AQUISITION_H_
-#define PMSM_FOC_POSITION_SPEED_AQUISITION_H_
+#ifndef PMSM_FOC_USER_CONFIG_H_
+#define PMSM_FOC_USER_CONFIG_H_
 
 /******************************************************************************/
 /*----------------------------------Includes----------------------------------*/
 /******************************************************************************/
-#include "Ifx_Types.h"
-#include "Gpt12_Init.h"
-#include "Ifx_LowPassPt1F32.h"
+#include "PmsmFoc_Macro.h"
 /******************************************************************************/
 /*--------------------------------Macros--------------------------------------*/
 /******************************************************************************/
+
+
+
+#define PMSM_FOC_HARDWARE_KIT				KIT_A2G_TC387_MOTORCTRL
+											/*
+											 * 1. KIT_A2G_TC387_MOTORCTRL
+											 * 2. CUSTOM_KIT (not implemented)
+ 	 	 	 	 	 	 	 	 	 	 	 */
+
+#define FOC_CONTROL_SCHEME               	SPEED_CONTROL
+											/*
+											 * 1. SPEED_CONTROL
+											 * 2. CURRENT_CONTROL
+											 */
+#define FOC_VOLTAGE_LIMIT 	 				DISABLED
+											/*
+											 * 1. ENABLED
+											 * 2. DISABLED
+											 */
+
+#define FOC_DQ_DECOUPLING 					DISABLED /*(not implemented)*/
+#define FOC_MTPA 							DISABLED /*(not implemented)*/
+#define FOC_FIELD_WEAKENING 				DISABLED /*(not implemented)*/
+#define FOC_MAX_EFFICIENCY 					DISABLED /*(not implemented)*/
+
+
+#define POSITION_SENSOR_TYPE               	ENCODER
+											/*
+											 * 1. ENCODER
+											 * 2. RESOLVER (not implemented)
+											 * 3. HALL (not implemented)
+											 * 4. SENSORLESS (not implemented)
+											 * 5. xGMR (not implemented)
+											 */
+#define GTM_USED							GTM_TOM_WITHOUT_DTM_USED
+											/*
+											 * 1. GTM_TOM_WITHOUT_DTM_USED
+											 * 2. GTM_ATOM_WITH_DTM_USED (not implemented)
+											 * 3. GTM_ATOM_WITHOUT_DTM_USED (not implemented)
+											 */
+
+
+#if(PMSM_FOC_HARDWARE_KIT == KIT_A2G_TC387_MOTORCTRL)
+
+#define PHASE_CURRENT_RECONSTRUCTION        USER_LOWSIDE_THREE_SHUNT_WITH_HIGHSIDE_MONITORING
+											/*
+											* 1. USER_LOWSIDE_SINGLE_SHUNT (not implemented)
+											* 2. USER_LOWSIDE_THREE_SHUNT_WITHOUT_HIGHSIDE_MONITORING
+											* 3. USER_LOWSIDE_THREE_SHUNT_WITH_HIGHSIDE_MONITORING
+											* 4. USER_HIGHSIDE_SINGLE_SHUNT (GTM Interrupt for control loop, 2x call back for EVADC, not implemented)
+											*/
+#define BEMF_MEASUREMENT                    ENABLED
+#define DC_LINK_VOLTAGE_MEASUREMENT         ENABLED
+
+#endif
+
+#define  EMOTOR_LIB							MC_EMOTOR
+											/*
+											* 1. MC_EMOTOR
+											* 2. CUSTOM (not implemented)
+											*/
+#define TRACE_MEMORY           				(512U)
+
+#define EC_MAX_SPEED						(6000U) /* Change limit according to application needs, rpm */
+#define EC_MIN_SPEED						(0U)	/* Change limit according to application needs, rpm */
+/*
+ * Hardware kit.
+ *
+ * KIT_AURIX_TC3XX_MOTORCTR
+ * CUSTOM_KIT
+ *
+*/
+
+/*
+ *  MCU Card.
+ *
+ *  APP_KIT_TC387A
+ *  CUSTOM_MCU
+*/
+
+/*
+ *  Inverter Card
+ *
+ *	EMOTOR_DRIVE_V_3_1
+ *	CUSTOM_INVERTER
+ *
+*/
+
+/*
+ * Motor Type
+ *
+ * NANOTEC_MOTOR_DB42S02
+ * CUSTOM_MOTOR
+ *
+*/
+#if(PMSM_FOC_HARDWARE_KIT == KIT_A2G_TC387_MOTORCTRL)
+#define MCUCARD_TYPE                                      APP_KIT_TFT_TC387A
+#define MCUCARD_TYPE_PATH                                 "PmsmFoc_AppKitTft_TC387A.h"
+#define INVERTERCARD_TYPE                                 EMOTOR_DRIVE_V_3_1
+#define INVERTERCARD_TYPE_PATH                            "PmsmFoc_EMotorDrive_v_3_1.h"
+#define MOTOR_TYPE                                        NANOTEC_MOTOR_DB42S02
+#define MOTOR_TYPE_PATH                                   "PmsmFoc_Motor_Nanotec_DB42S02.h"
+
+#elif(PMSM_FOC_HARDWARE_KIT == CUSTOM_KIT)
+#define MCUCARD_TYPE                                      CUSTOM_MCU
+#define MCUCARD_TYPE_PATH                                 "PmsmFoc_CUSTOM_MCU.h" 		/* Shall be added by user */
+#define INVERTERCARD_TYPE                                 CUSTOM_INVERTER
+#define INVERTERCARD_TYPE_PATH                            "PmsmFoc_CUSTOM_INVERTER.h" 	/* Shall be added by user */
+#define MOTOR_TYPE                                        CUSTOM_MOTOR
+#define MOTOR_TYPE_PATH                                   "PmsmFoc_CUSTOM_MOTOR.h" 		/* Shall be added by user */
+#endif
+
 
 /******************************************************************************/
 /*------------------------------Global variables------------------------------*/
@@ -58,64 +168,11 @@
 /******************************************************************************/
 /*--------------------------------Enumerations--------------------------------*/
 /******************************************************************************/
-/** @brief Position acquisition mode
- */
-typedef enum
-{
-	PositionAcquisition_SensorType_Hall = 0,                /**< \brief Hall sensor is used */
-	PositionAcquisition_SensorType_Encoder = 1,             /**< \brief Encoder & Hall sensors are used */
-	PositionAcquisition_SensorType_Resolver = 2,            /**< \brief Resolver	sensor is used */
-	PositionAcquisition_SensorType_Sensorless = 3,			/**< \brief Sensorless method is used */
-	PositionAcquisition_SensorType_Encoder_and_Resolver = 4 /**< \brief Encoder and Resolver sensors are used */
-} PositionAcquisition_SensorType;
 
-typedef enum
-{
-	Encoder_CalibrationStatus_notDone = 0,
-	Encoder_CalibrationStatus_done
-} Encoder_CalibrationStatus;
 /******************************************************************************/
 /*-----------------------------Data Structures--------------------------------*/
 /******************************************************************************/
-typedef struct
-{
-	uint32 dummy;
-} PositionAcquisition_Hall;
 
-typedef struct
-{
-	uint32 dummy;
-} PositionAcquisition_Sensorless;
-
-typedef struct
-{
-	IfxGpt12_IncrEnc incrEncoder;
-	Encoder_CalibrationStatus calibrationStatus;
-	boolean encSyncTopZero;						/**< \brief encoder top zero synchronization: 1 =  enabled, 0 = disabled. */
-	boolean	encOffsetCal;						/**< \brief encoder offset calibration: 1 =  enabled, 0 = disabled. */
-
-} PositionAcquisition_Encoder;
-
-typedef struct
-{
-	uint32 dummy;
-} PositionAcquisition_Resolver;
-
-
-/** @brief Position acquisition object
- */
-typedef struct
-{
-	PositionAcquisition_Encoder     encoder;     /**< \brief Pointer to the Encoder handler*/
-	//PositionAcquisition_Hall       	hall;        /**< \brief Pointer to the Hall sensor handler */
-	//PositionAcquisition_Resolver    resolver;    /**< \brief Pointer to the Resolver handler */
-	//PositionAcquisition_Sensorless 	sensorless;  /**< \brief Pointer to the Sensorless handler */
-	Ifx_LowPassPt1F32               speedLpf;    /**< \brief Lowpass filter object*/
-	PositionAcquisition_SensorType  sensorType;   /**< \brief Position sensor used */
-	boolean                         statusOk;     /**< \brief Position sensor status*/
-    uint32    	electricalAngle;          		/**< \brief Electrical angle. */
-	float32 	rotorSpeed;						/*< @brief Motor shaft speed */
-} PositionAcquisition;
 /******************************************************************************/
 /*------------------------Private Variables/Constants-------------------------*/
 /******************************************************************************/
@@ -123,35 +180,6 @@ typedef struct
 /******************************************************************************/
 /*-------------------------Global Function Prototypes-------------------------*/
 /******************************************************************************/
-/** /brief
- *
- * /param positionAcquisition Reference to structure that contains instance data members
- * /param sensorType Specifies the sensor type (e.g. Encoder, Resolve, Hall, Sensorless,..)
- *
- * /return
- * /note
- * /see
- * /ingroup
- */
-IFX_EXTERN void PmsmFoc_PositionAcquisition_init(PositionAcquisition* positionAcquisition, PositionAcquisition_SensorType sensorType);
-/** /brief
- *
- * /param positionAcquisition Reference to structure that contains instance data members
- * /return
- * /note
- * /see
- * /ingroup
- */
-IFX_EXTERN sint32 PmsmFoc_PositionAcquisition_updatePosition(PositionAcquisition* positionAcquisition);
-/** /brief
- *
- * /param positionAcquisition Reference to structure that contains instance data members
- * /return
- * /note
- * /see
- * /ingroup
- */
-IFX_EXTERN float32 PmsmFoc_PositionAcquisition_updateSpeed(PositionAcquisition* positionAcquisition);
 
 /******************************************************************************/
 /*-------------------------Inline Function Prototypes-------------------------*/
@@ -161,4 +189,4 @@ IFX_EXTERN float32 PmsmFoc_PositionAcquisition_updateSpeed(PositionAcquisition* 
 /*---------------------Inline Function Implementations------------------------*/
 /******************************************************************************/
 
-#endif /* PMSM_FOC_POSITION_SPEED_AQUISITION_H_ */
+#endif /* _PMSM_FOC_USER_CONFIG_H_ */

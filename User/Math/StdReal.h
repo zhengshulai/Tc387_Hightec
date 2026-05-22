@@ -45,8 +45,8 @@
 #ifndef STDREAL_H
 #define STDREAL_H
 
-#include "Cpu/Std/Ifx_Types.h"
-#include "Cpu/Std/IfxCpu_Intrinsics.h"
+#include "Ifx_Types.h"
+#include "IfxCpu_Intrinsics.h"
 
 typedef sfract FixPoint16;
 typedef fract  FixPoint32;

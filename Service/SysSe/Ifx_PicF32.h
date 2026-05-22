@@ -1,7 +1,11 @@
 /**
- * @file MotorControl.h
- * @brief Motor control functions.
+ * \file Ifx_PicF32.h
+ * \brief Proportional integral controller.
+ * \ingroup library_srvsw_sysse_math_f32_pic
  *
+ *
+ *
+ * \version disabled
  * \copyright Copyright (c) 2019 Infineon Technologies AG. All rights reserved.
  *
  *                            IMPORTANT NOTICE
@@ -36,38 +40,58 @@
  * DEALINGS IN THE SOFTWARE.
  *
  *
+ * \defgroup library_srvsw_sysse_math_f32_pic Proportional-Integral Controller
  *
- * @defgroup motor_control Motor control
+ * This module implements the Proportional integral controller, using the First Order Hold method.
+ *  U(k+1)= A1 * I(k+1) + A0 * Ik + Uk
+ *  Where:
+ *  - A0 = kp * (wpi * TSample/2 - 1)
+ *  - A1 = kp * (wpi * TSample/2 + 1)
+ *  - wpi = ki / kp   (rad/s)
+ *  - TSample is the sample time in seconds
  *
- * This module implements motor control functions.
- * @image html "ControlLoop.gif"
  *
- * @ingroup library
- *
- * $Revision: 107 $
- * $Date: 2010-06-28 17:35:27 +0200 (Mon, 28 Jun 2010) $
+ * \ingroup library_srvsw_sysse_math_f32
  *
  */
 
-#if !defined(MOTOR_CONTROL_H)
-#define MOTOR_CONTROL_H
+#if !defined(IFX_PICF32)
+#define IFX_PICF32
 //------------------------------------------------------------------------------
-#include "IfxCpu_Intrinsics.h"
-#include "Arith.StdReal.h"
-
 #include "Ifx_Types.h"
 //------------------------------------------------------------------------------
-
-/** @brief 3 phase variable definition.
+/** \brief PI object definition.
  */
-#if(EMOTOR_LIB == MC_EMOTOR)
 typedef struct
 {
-    StdReal u;                            /**< @brief Phase U variable */
-    StdReal v;                            /**< @brief Phase V variable */
-    StdReal w;                            /**< @brief Phase W variable */
-}T3Phase;
-#endif
+    float32 a0;                        /**< \brief A0 parameter */
+    float32 a1;                        /**< \brief A1 parameter */
+    float32 uk;                        /**< \brief high resolution PI output value */
+    float32 ik;                        /**< \brief PI last error value */
+    float32 lower;                     /**< \brief PI min limit */
+    float32 upper;                     /**< \brief PI max limit */
+    uint8   hitLimits;                 /**< \brief PI limit hit flag */
+} Ifx_PicF32;
 
+/** \brief PI controller configuration */
+typedef struct
+{
+    float32 kp;             /**< \brief Direct (Proportional) gain */
+    float32 ki;             /**< \brief Integrator gain */
+} Ifx_PicF32_Config;
+
+IFX_EXTERN void Ifx_PicF32_init(Ifx_PicF32 *pic);
+IFX_EXTERN void Ifx_PicF32_reset(Ifx_PicF32 *pic);
+
+IFX_EXTERN void Ifx_PicF32_setKpKi(Ifx_PicF32 *pic, float32 kp, float32 ki, float32 Ts);
+IFX_EXTERN void Ifx_PicF32_getKpKi(Ifx_PicF32 *pic, float32 *kp, float32 *ki, float32 Ts);
+
+IFX_EXTERN void Ifx_PicF32_setLimit(Ifx_PicF32 *pic, float32 lowerLimit, float32 upperLimit);
+IFX_EXTERN void Ifx_PicF32_getLimit(Ifx_PicF32 *pic, float32 *lowerLimit, float32 *upperLimit);
+
+IFX_EXTERN float32 Ifx_PicF32_step(Ifx_PicF32 *pic, float32 Input);
+
+IFX_EXTERN boolean Ifx_PicF32_isLimitsHit(Ifx_PicF32 *pic);
+IFX_EXTERN void    Ifx_PicF32_resetLimitHit(Ifx_PicF32 *pic);
 
 #endif
