@@ -50,7 +50,7 @@
 #include "IfxQspi_SpiMaster.h"
 #include "IfxDma.h"
 
-#include "SysSe/Bsp/Bsp.h"
+#include "Bsp.h"
 #include "IfxEvadc.h"
 #include "IfxEvadc_Adc.h"
 #include "IfxEvadc_reg.h"
@@ -63,7 +63,7 @@
 #include "IfxEdsadc_reg.h"
 #include "IfxEdsadc_regdef.h"
 #include "IfxEdsadc_bf.h"
-#include "Port/Std/IfxPort.h"
+#include "IfxPort.h"
 
 
 /******************************************************************************/

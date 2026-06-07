@@ -120,7 +120,7 @@ const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_CURR_G0CH0 =
 const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_VBEMF_G2CH3 = 
 {
 	/*Level            =*/98,
-	/*Source           =*/0x694,
+	/*Source           =*/0x698,
 	/*CoreAssignment   =*/0
 };
 const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_VBEMF_G2CH3 = 

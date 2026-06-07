@@ -190,10 +190,7 @@ void PmsmFoc_Gtm_initGtm(Inverter* const inverter)
 
 #elif(GTM_USED == GTM_TOM_WITHOUT_DTM_USED)
     PmsmFoc_Gtm_initTom(inverter);	/* TOM without DTM, two Channel per phase */
-    inverter->pwm3PhaseOutput.timerFreq= IfxGtm_Tom_Ch_getClockFrequency(
-        inverter->pwm3PhaseOutput.timer.gtm,
-        inverter->pwm3PhaseOutput.timer.tom,
-        inverter->pwm3PhaseOutput.timer.timerChannel);
+    inverter->pwm3PhaseOutput.timerFreq= IfxGtm_Tom_Ch_getClockFrequency(inverter->pwm3PhaseOutput.timer.gtm, inverter->pwm3PhaseOutput.timer.tom, inverter->pwm3PhaseOutput.timer.timerChannel);
     /* enable interrupts again */
     IfxCpu_restoreInterrupts(interruptState);
     PmsmFoc_Gtm_initTrigToEvadcCurSense();
@@ -258,7 +255,7 @@ void PmsmFoc_Gtm_initTom(Inverter * const inverter)
         pwmHlConfig.base.minPulse= 1.0e-6;
         pwmHlConfig.base.outputMode= IfxPort_OutputMode_pushPull;
         pwmHlConfig.base.outputDriver= IfxPort_PadDriver_cmosAutomotiveSpeed2;
-        pwmHlConfig.base.ccxActiveState= Ifx_ActiveState_low;
+        pwmHlConfig.base.ccxActiveState= Ifx_ActiveState_high;
         pwmHlConfig.base.coutxActiveState= Ifx_ActiveState_high;
 
         pwmHlConfig.ccx= ccx;
