@@ -54,13 +54,13 @@
 
 #if(MOTOR_TYPE == NANOTEC_MOTOR_DB42S02)
 /** \brief Define the motor pole pairs number. */
-#define USER_MOTOR_POLE_PAIR                       	(4U)
+#define USER_MOTOR_POLE_PAIR                       	(8U)
 /** \brief Define the motor resistance/phase to phase, in Ohm */
-#define USER_MOTOR_RESISTANCE_PHASE_TO_PHASE       	(0.19f)
+#define USER_MOTOR_RESISTANCE_PHASE_TO_PHASE       	(1.02f)
 /** \brief Define the motor inductance/phase to phase, in H */
-#define USER_MOTOR_INDUCTANCE_PHASE_TO_PHASE        (0.245e-3)
+#define USER_MOTOR_INDUCTANCE_PHASE_TO_PHASE        (0.59e-3)
 /** \brief Define the Motor wiring Connection */
-#define USER_MOTOR_WIRING_CONNECTION				DELTA
+#define USER_MOTOR_WIRING_CONNECTION				WYE
 
 #if (USER_MOTOR_WIRING_CONNECTION == DELTA)
 /** \brief Define the motor resistance per phase in Ohm */
@@ -92,7 +92,7 @@
 #define USER_MOTOR_ENCODER_CAL_OFFSET_COUNTS		(30000U)
 
 /** \brief Define the incremental encoder maximum speed value. */
-#define USER_MOTOR_ENCODER_MAX_RPM			        (6000.0f)
+#define USER_MOTOR_ENCODER_MAX_RPM			        (3000.0f)
 
 /** \brief Define the motor min speed limit value. */
 #define USER_MOTOR_SPEED_LOW_LIMIT_RPM              (1.0f)

@@ -90,6 +90,8 @@ extern IfxQspi_SpiMaster           spiMasterQspi4;
 /******************************************************************************/
 /*---------------------Inline Function Implementations------------------------*/
 /******************************************************************************/
+extern void Os_Isr_Gpt12_Encoder();
+
 extern void Os_Isr_CURR_G0CH0();
 extern void Os_Isr_VHVDC_G1CH3();
 extern void Os_Isr_VBEMF_G2CH3();

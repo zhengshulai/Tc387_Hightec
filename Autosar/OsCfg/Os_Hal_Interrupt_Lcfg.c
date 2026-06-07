@@ -141,6 +141,18 @@ const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_VHVDC_G1CH3 =
 
 
 
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Gpt12_Encoder = 
+{
+	/*Level            =*/20,
+	/*Source           =*/0x2EC,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Gpt12_Encoder = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+
 
 const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_OsIsr_STM1_Ch0 = 
 {

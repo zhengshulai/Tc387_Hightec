@@ -73,6 +73,11 @@ void Os_Isr_VBEMF_G2CH3()
 	PmsmFoc_BemfVoltageSense_getValue(&g_motorControl.inverter.bemfVoltageSense);
 }
 
+void Os_Isr_Gpt12_Encoder()
+{
+	IfxGpt12_IncrEnc_onZeroIrq(&g_motorControl.positionSensor.encoder.incrEncoder);
+}
+
 void Os_Isr_Qspi_Tlf35584_TxIsr()
 {
 	IfxCpu_enableInterrupts();

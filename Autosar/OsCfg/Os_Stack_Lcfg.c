@@ -7,7 +7,7 @@
 #include "Os_Stack.h"
 
 
-Os_Hal_StackType OsCfg_Stack_Core0_10ms_Task_Dyn[(4096+16)/4];
+Os_Hal_StackType OsCfg_Stack_Core0_10ms_Task_Dyn[(2048+16)/4];
 Os_Hal_StackType OsCfg_Stack_Core1_10ms_Task_Dyn[(4096+16)/4];
 Os_Hal_StackType OsCfg_Stack_Core2_10ms_Task_Dyn[(4096+16)/4];
 Os_Hal_StackType OsCfg_Stack_Core3_10ms_Task_Dyn[(4096+16)/4];
@@ -29,6 +29,8 @@ Os_Hal_StackType OsCfg_Stack_Tle9180_ErrIsr_Dyn[(2048+16)/4];
 Os_Hal_StackType OsCfg_Stack_CURR_G0CH0_Dyn[(2048+16)/4];
 Os_Hal_StackType OsCfg_Stack_VBEMF_G2CH3_Dyn[(2048+16)/4];
 Os_Hal_StackType OsCfg_Stack_VHVDC_G1CH3_Dyn[(2048+16)/4];
+
+Os_Hal_StackType OsCfg_Stack_Gpt12_Encoder_Dyn[(1024+16)/4];
 
 Os_Hal_StackType OsCfg_Stack_OsCore1_Error_Dyn[(1024+16)/4];
 Os_Hal_StackType OsCfg_Stack_OsCore1_Init_Dyn[(1024+16)/4];
@@ -142,6 +144,12 @@ const Os_StackConfigType OsCfg_Stack_VHVDC_G1CH3 =
 {
 	/*LowAddress     =*/OS_STACK_GETLOWADDRESS(OsCfg_Stack_VHVDC_G1CH3_Dyn),
 	/*HighAddress    =*/OS_STACK_GETHIGHADDRESS(OsCfg_Stack_VHVDC_G1CH3_Dyn)
+};
+
+const Os_StackConfigType OsCfg_Stack_Gpt12_Encoder = 
+{
+	/*LowAddress     =*/OS_STACK_GETLOWADDRESS(OsCfg_Stack_Gpt12_Encoder_Dyn),
+	/*HighAddress    =*/OS_STACK_GETHIGHADDRESS(OsCfg_Stack_Gpt12_Encoder_Dyn)
 };
 
 /************************************************************Core1*********************************************************/

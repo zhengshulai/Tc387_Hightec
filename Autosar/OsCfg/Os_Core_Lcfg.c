@@ -72,7 +72,7 @@ static const Os_ResourceConfigRefType OsCfg_Core_OsCore0_ResourceRefs[3] =
 	OS_RESOURCE_CASTCONFIG_RESOURCE_2_RESOURCE(OsCfg_Resource_RES_SCHEDULER_OsCore0),
 	NULL_PTR
 };
-static const Os_StackConfigRefType OsCfg_Core_OsCore0_StackRefs[17] = 
+static const Os_StackConfigRefType OsCfg_Core_OsCore0_StackRefs[18] = 
 {
 	(Os_StackConfigRefType)&OsCfg_Stack_Core0_10ms_Task,
 	(Os_StackConfigRefType)&OsCfg_Stack_OsCore0_Error,
@@ -90,9 +90,10 @@ static const Os_StackConfigRefType OsCfg_Core_OsCore0_StackRefs[17] =
 	(Os_StackConfigRefType)&OsCfg_Stack_CURR_G0CH0,
 	(Os_StackConfigRefType)&OsCfg_Stack_VBEMF_G2CH3,
 	(Os_StackConfigRefType)&OsCfg_Stack_VHVDC_G1CH3,
+	(Os_StackConfigRefType)&OsCfg_Stack_Gpt12_Encoder,
 	NULL_PTR
 };
-static const Os_IsrConfigRefType OsCfg_Core_OsCore0_IsrRefs[12] =
+static const Os_IsrConfigRefType OsCfg_Core_OsCore0_IsrRefs[13] =
 {
 	OS_TIMER_CASTCONFIG_TIMERISR_2_ISR(OsCfg_Isr_OsIsr_STM0_Ch0),
 	OS_XSIGNAL_CASTCONFIG_XSIGNALISR_2_ISR(OsCfg_Isr_XSignalIsr_OsCore0),
@@ -105,6 +106,7 @@ static const Os_IsrConfigRefType OsCfg_Core_OsCore0_IsrRefs[12] =
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_CURR_G0CH0),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_VBEMF_G2CH3),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_VHVDC_G1CH3),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Gpt12_Encoder),
 	NULL_PTR
 };
 const Os_CoreAsrConfigType OsCfg_Core_OsCore0 = 
@@ -143,7 +145,7 @@ const Os_CoreAsrConfigType OsCfg_Core_OsCore0 =
 	/*MemoryProtection       =*/NULL_PTR,
 	/*TimingProtection       =*/NULL_PTR,
 	/*StackRefs              =*/OsCfg_Core_OsCore0_StackRefs,	
-	/*StackCount             =*/(Os_ObjIdxType)16u,
+	/*StackCount             =*/(Os_ObjIdxType)17u,
 	/*CoreIdx                =*/OS_COREASRCOREIDX_0,
 	/*XSignal                =*/&OsCfg_XSig_OsCore0,
 	/*IocRefs                =*/OsCfg_Core_OsCore0_IocRefs,
@@ -153,7 +155,7 @@ const Os_CoreAsrConfigType OsCfg_Core_OsCore0 =
 	/*BarrierCount           =*/(Os_ObjIdxType)0u,
 	/*ThreadClass            =*/&OsCfg_Core_OsCore0_ThreadClass,
 	/*IsrRefs                =*/OsCfg_Core_OsCore0_IsrRefs,
-	/*IsrCount               =*/(Os_ObjIdxType)11u
+	/*IsrCount               =*/(Os_ObjIdxType)12u
 };
 
 

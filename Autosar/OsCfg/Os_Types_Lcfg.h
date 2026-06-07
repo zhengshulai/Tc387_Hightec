@@ -46,6 +46,8 @@
 #define VBEMF_G2CH3               VBEMF_G2CH3
 #define VHVDC_G1CH3               VHVDC_G1CH3
 
+#define Gpt12_Encoder             Gpt12_Encoder
+
 #define Rte_Al_TE2_Core0_10ms_Task_0_10ms Rte_Al_TE2_Core0_10ms_Task_0_10ms
 #define Rte_Al_TE2_Core1_10ms_Task_0_10ms Rte_Al_TE2_Core1_10ms_Task_0_10ms
 #define Rte_Al_TE2_Core2_10ms_Task_0_10ms Rte_Al_TE2_Core2_10ms_Task_0_10ms
@@ -133,7 +135,8 @@ typedef enum
 	CURR_G0CH0 = 14,
 	VBEMF_G2CH3 = 15,
 	VHVDC_G1CH3 = 16,
-	OS_ISRID_COUNT = 17,
+    Gpt12_Encoder = 17,
+	OS_ISRID_COUNT = 18,
 	INVALID_ISR = OS_ISRID_COUNT
 }ISRType;
 

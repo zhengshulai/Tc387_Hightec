@@ -71,6 +71,8 @@ Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_VBEMF_G2CH3_Dyn;
 Os_Hal_ContextType OsCfg_Hal_Context_VHVDC_G1CH3_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_VHVDC_G1CH3_Dyn;
 
+Os_Hal_ContextType OsCfg_Hal_Context_Gpt12_Encoder_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Gpt12_Encoder_Dyn;
 /*******************************************Core1*******************************************/
 Os_Hal_ContextType OsCfg_Hal_Context_Os_CoreInitHook_OsCore1_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Os_CoreInitHook_OsCore1_Dyn;
@@ -303,6 +305,18 @@ const Os_Hal_ContextConfigType OsCfg_Hal_Context_VHVDC_G1CH3 =
 	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
 
+
+
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_Gpt12_Encoder = 
+{
+	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_Gpt12_Encoder_Dyn)+1),
+	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_Gpt12_Encoder_Dyn)),
+	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
+	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
+	/*Entry               =*/(uint32)&Os_Isr_Gpt12_Encoder,
+	/*ReturnAddress       =*/(uint32)&Os_TrapIsrEpilogue,
+	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
+};
 
 
 

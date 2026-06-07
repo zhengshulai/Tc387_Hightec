@@ -46,6 +46,8 @@ static Os_IsrType OsCfg_Isr_OsIsr_Tle9180_ErrIsr_Dyn;
 static Os_IsrType OsCfg_Isr_OsIsr_CURR_G0CH0_Dyn;
 static Os_IsrType OsCfg_Isr_OsIsr_VBEMF_G2CH3_Dyn;
 static Os_IsrType OsCfg_Isr_OsIsr_VHVDC_G1CH3_Dyn;
+
+static Os_IsrType OsCfg_Isr_OsIsr_Gpt12_Encoder_Dyn;
 /**********************************************************Core0**********************************************************/
 const Os_IsrHwConfigType OsCfg_Isr_OsIsr_STM0_Ch0_HwConfig = 
 {
@@ -434,6 +436,41 @@ const Os_IsrConfigType OsCfg_Isr_OsIsr_VHVDC_G1CH3 =
 	/*IsrId                        =*/VHVDC_G1CH3,
 	/*IsEnabledOnInitialization    =*/FALSE
 };
+
+const Os_IsrHwConfigType OsCfg_Isr_OsIsr_Gpt12_Encoder_HwConfig = 
+{
+	/*HwConfig                 =*/&OsCfg_Hal_IntIsr_Gpt12_Encoder,
+	/*MapConfig                =*/&OsCfg_Hal_IntIsrMap_Gpt12_Encoder,
+	/*IsMapped                 =*/FALSE,
+	/*IsPostActionRequired     =*/FALSE
+};
+
+const Os_IsrConfigType OsCfg_Isr_OsIsr_Gpt12_Encoder =
+{
+	//Thread
+	{
+		/*.ContextConfig           =*/&OsCfg_Hal_Context_Gpt12_Encoder,
+		/*.Context                 =*/&OsCfg_Hal_Context_Gpt12_Encoder_Dyn,
+		/*Stack                    =*/&OsCfg_Stack_Gpt12_Encoder,
+		/*Dyn                      =*/OS_TASK_CASTDYN_TASK_2_THREAD(OsCfg_Isr_OsIsr_Gpt12_Encoder_Dyn),
+		/*OwnerApplication         =*/&OsCfg_App_OsApplication_NonTrusted_Core0,
+		/*Core                     =*/&OsCfg_Core_OsCore0,
+		/*IntApiState              =*/&OsCfg_Core_OsCore0_Dyn.IntApiState,
+		/*TimerPortConfig          =*/NULL_PTR,
+		/*MpAccessRightsInitial    =*/NULL_PTR,
+		/*AccessRights             =*/&OsCfg_AccessCheck_NoAccess,
+		/*Trace                    =*/NULL_PTR,
+		/*FpuContext               =*/&OsCfg_Hal_FpuContext_Gpt12_Encoder_Dyn,
+		/*InitialCallContext       =*/OS_CALLCONTEXT_ISR2,
+		/*PreThreadHook            =*/NULL_PTR,
+		/*InitDuringStartUp        =*/FALSE,
+		/*UsesFpu                  =*/TRUE			
+	},
+	/*SourceConfig                 =*/&OsCfg_Isr_OsIsr_Gpt12_Encoder_HwConfig,
+	/*IsrId                        =*/Gpt12_Encoder,
+	/*IsEnabledOnInitialization    =*/FALSE
+};
+
 /**********************************************************Core1**********************************************************/
 const Os_IsrHwConfigType OsCfg_Isr_OsIsr_STM1_Ch0_HwConfig = 
 {
@@ -678,7 +715,7 @@ const Os_XSigIsrConfigType OsCfg_Isr_XSignalIsr_OsCore3 =
 };
 
 
-const Os_IsrConfigType* const OsCfg_IsrRefs[18] = 
+const Os_IsrConfigType* const OsCfg_IsrRefs[19] = 
 {
 	OS_TIMER_CASTCONFIG_TIMERISR_2_ISR(OsCfg_Isr_OsIsr_STM0_Ch0),
 	OS_TIMER_CASTCONFIG_TIMERISR_2_ISR(OsCfg_Isr_OsIsr_STM1_Ch0),
@@ -697,5 +734,6 @@ const Os_IsrConfigType* const OsCfg_IsrRefs[18] =
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_CURR_G0CH0),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_VBEMF_G2CH3),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_VHVDC_G1CH3),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Gpt12_Encoder),
 	NULL_PTR
 };

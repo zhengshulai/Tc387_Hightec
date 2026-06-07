@@ -46,6 +46,9 @@ extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_VBEMF_G2CH3;
 extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_VHVDC_G1CH3;
 extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_VHVDC_G1CH3;
 
+extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_Gpt12_Encoder;
+extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Gpt12_Encoder;
+
 extern const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_OsIsr_STM1_Ch0;
 extern const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_OsIsr_STM1_Ch0;
 
