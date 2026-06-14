@@ -48,6 +48,9 @@ static Os_IsrType OsCfg_Isr_OsIsr_VBEMF_G2CH3_Dyn;
 static Os_IsrType OsCfg_Isr_OsIsr_VHVDC_G1CH3_Dyn;
 
 static Os_IsrType OsCfg_Isr_OsIsr_Gpt12_Encoder_Dyn;
+
+static Os_IsrType OsCfg_Isr_OsIsr_CAN02_Tx_Dyn;
+static Os_IsrType OsCfg_Isr_OsIsr_CAN02_Rx_Dyn;
 /**********************************************************Core0**********************************************************/
 const Os_IsrHwConfigType OsCfg_Isr_OsIsr_STM0_Ch0_HwConfig = 
 {
@@ -471,6 +474,73 @@ const Os_IsrConfigType OsCfg_Isr_OsIsr_Gpt12_Encoder =
 	/*IsEnabledOnInitialization    =*/FALSE
 };
 
+const Os_IsrHwConfigType OsCfg_Isr_OsIsr_CAN02_Tx_HwConfig = 
+{
+	/*HwConfig                 =*/&OsCfg_Hal_IntIsr_CAN02_Tx,
+	/*MapConfig                =*/&OsCfg_Hal_IntIsrMap_CAN02_Tx,
+	/*IsMapped                 =*/FALSE,
+	/*IsPostActionRequired     =*/FALSE
+};
+
+const Os_IsrConfigType OsCfg_Isr_OsIsr_CAN02_Tx =
+{
+	//Thread
+	{
+		/*.ContextConfig           =*/&OsCfg_Hal_Context_CAN02_Tx,
+		/*.Context                 =*/&OsCfg_Hal_Context_CAN02_Tx_Dyn,
+		/*Stack                    =*/&OsCfg_Stack_CAN02_Tx,
+		/*Dyn                      =*/OS_TASK_CASTDYN_TASK_2_THREAD(OsCfg_Isr_OsIsr_CAN02_Tx_Dyn),
+		/*OwnerApplication         =*/&OsCfg_App_OsApplication_NonTrusted_Core0,
+		/*Core                     =*/&OsCfg_Core_OsCore0,
+		/*IntApiState              =*/&OsCfg_Core_OsCore0_Dyn.IntApiState,
+		/*TimerPortConfig          =*/NULL_PTR,
+		/*MpAccessRightsInitial    =*/NULL_PTR,
+		/*AccessRights             =*/&OsCfg_AccessCheck_NoAccess,
+		/*Trace                    =*/NULL_PTR,
+		/*FpuContext               =*/&OsCfg_Hal_FpuContext_CAN02_Tx_Dyn,
+		/*InitialCallContext       =*/OS_CALLCONTEXT_ISR2,
+		/*PreThreadHook            =*/NULL_PTR,
+		/*InitDuringStartUp        =*/FALSE,
+		/*UsesFpu                  =*/TRUE			
+	},
+	/*SourceConfig                 =*/&OsCfg_Isr_OsIsr_CAN02_Tx_HwConfig,
+	/*IsrId                        =*/CAN02_Tx,
+	/*IsEnabledOnInitialization    =*/FALSE
+};
+
+const Os_IsrHwConfigType OsCfg_Isr_OsIsr_CAN02_Rx_HwConfig = 
+{
+	/*HwConfig                 =*/&OsCfg_Hal_IntIsr_CAN02_Rx,
+	/*MapConfig                =*/&OsCfg_Hal_IntIsrMap_CAN02_Rx,
+	/*IsMapped                 =*/FALSE,
+	/*IsPostActionRequired     =*/FALSE
+};
+
+const Os_IsrConfigType OsCfg_Isr_OsIsr_CAN02_Rx =
+{
+	//Thread
+	{
+		/*.ContextConfig           =*/&OsCfg_Hal_Context_CAN02_Rx,
+		/*.Context                 =*/&OsCfg_Hal_Context_CAN02_Rx_Dyn,
+		/*Stack                    =*/&OsCfg_Stack_CAN02_Rx,
+		/*Dyn                      =*/OS_TASK_CASTDYN_TASK_2_THREAD(OsCfg_Isr_OsIsr_CAN02_Rx_Dyn),
+		/*OwnerApplication         =*/&OsCfg_App_OsApplication_NonTrusted_Core0,
+		/*Core                     =*/&OsCfg_Core_OsCore0,
+		/*IntApiState              =*/&OsCfg_Core_OsCore0_Dyn.IntApiState,
+		/*TimerPortConfig          =*/NULL_PTR,
+		/*MpAccessRightsInitial    =*/NULL_PTR,
+		/*AccessRights             =*/&OsCfg_AccessCheck_NoAccess,
+		/*Trace                    =*/NULL_PTR,
+		/*FpuContext               =*/&OsCfg_Hal_FpuContext_CAN02_Rx_Dyn,
+		/*InitialCallContext       =*/OS_CALLCONTEXT_ISR2,
+		/*PreThreadHook            =*/NULL_PTR,
+		/*InitDuringStartUp        =*/FALSE,
+		/*UsesFpu                  =*/TRUE			
+	},
+	/*SourceConfig                 =*/&OsCfg_Isr_OsIsr_CAN02_Rx_HwConfig,
+	/*IsrId                        =*/CAN02_Rx,
+	/*IsEnabledOnInitialization    =*/FALSE
+};
 /**********************************************************Core1**********************************************************/
 const Os_IsrHwConfigType OsCfg_Isr_OsIsr_STM1_Ch0_HwConfig = 
 {
@@ -715,7 +785,7 @@ const Os_XSigIsrConfigType OsCfg_Isr_XSignalIsr_OsCore3 =
 };
 
 
-const Os_IsrConfigType* const OsCfg_IsrRefs[19] = 
+const Os_IsrConfigType* const OsCfg_IsrRefs[21] = 
 {
 	OS_TIMER_CASTCONFIG_TIMERISR_2_ISR(OsCfg_Isr_OsIsr_STM0_Ch0),
 	OS_TIMER_CASTCONFIG_TIMERISR_2_ISR(OsCfg_Isr_OsIsr_STM1_Ch0),
@@ -735,5 +805,7 @@ const Os_IsrConfigType* const OsCfg_IsrRefs[19] =
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_VBEMF_G2CH3),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_VHVDC_G1CH3),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Gpt12_Encoder),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_CAN02_Tx),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_CAN02_Rx),
 	NULL_PTR
 };

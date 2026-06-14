@@ -55,6 +55,8 @@ USER_MIDSYS              := PmsmFoc_CurrentDcLinkSense.c PmsmFoc_CurrentThreeshu
 USER_MATH                := Arith.FixPoint.Tasking.c
 USER_MOTORDRIVE          := Clarke.c Park.c SpaceVectorModulation.c Tables.c Tables_const.c
 USER_CONTROLMODULES      := PmsmFoc_Functions.c PmsmFoc_Interface.c PmsmFoc_SpeedControl.c PmsmFoc_StateMachine.c
+USER_CAN                 := CANFD.c
+USER_SILMULINKCODE       := CurrentControl.c CurrentControl_data.c SpeedControl.c
 AUTOSAR_OS		         := Os_AccessCheck.c Os_Alarm.c Os_Application.c Os_Barrier.c Os_Bit.c Os_BitArray.c Os_Core.c Os_Counter.c Os_Deque.c Os_Error.c Os_Event.c Os_Fifo.c\
                             Os_Fifo08.c Os_Fifo16.c Os_Fifo32.c Os_FifoRef.c Os_Hal_Compiler_Diab.c Os_Hal_Compiler_Greenhills.c Os_Hal_Compiler_HighTec.c Os_Hal_Compiler_Tasking.c\
 						    Os_Hal_Context.c Os_Hal_Core.c Os_Hal_Entry.c Os_Hal_Trap.c Os_Hook.c Os_Interrupt.c Os_Ioc.c Os_Isr.c Os_Job.c Os_Lock.c Os_MemoryProtection.c\
@@ -123,9 +125,12 @@ USER_MATH_PATH           := $(ROOT)User/Math
 USER_CONTROLMODULES_PATH := $(ROOT)User/ControlModules
 USER_MOTORDRIVE_PATH     := $(ROOT)User/MotorDrive
 USER_CONFIGURATION_PATH  := $(ROOT)User/Configuration
+USER_CAN_PATH            := $(ROOT)User/CAN
+USER_SILMULINKCODE_PATH  := $(ROOT)User/SilmulinkCode
 AUTOSAR_OS_PATH          := $(ROOT)Autosar/Os
 AUTOSAR_OSCFG_PATH       := $(ROOT)Autosar/OsCfg
 OBJ_PATH                 := $(ROOT)Obj
+
 
 CFILES                 += $(addprefix $(CONFIGURATIONS_PATH)/,$(CONFIGURATIONS))
 CFILES                 += $(addprefix $(ILLD_Impl_PATH)/,$(ILLD_Impl))
@@ -180,6 +185,8 @@ CFILES                 += $(addprefix $(USER_MIDSYS_PATH)/,$(USER_MIDSYS))
 CFILES                 += $(addprefix $(USER_MATH_PATH)/,$(USER_MATH))
 CFILES                 += $(addprefix $(USER_CONTROLMODULES_PATH)/,$(USER_CONTROLMODULES))
 CFILES                 += $(addprefix $(USER_MOTORDRIVE_PATH)/,$(USER_MOTORDRIVE))
+CFILES                 += $(addprefix $(USER_CAN_PATH)/,$(USER_CAN))
+CFILES                 += $(addprefix $(USER_SILMULINKCODE_PATH)/,$(USER_SILMULINKCODE))
 CFILES                 += $(addprefix $(AUTOSAR_OS_PATH)/,$(AUTOSAR_OS))
 CFILES                 += $(addprefix $(AUTOSAR_OSCFG_PATH)/,$(AUTOSAR_OSCFG))
 
@@ -198,4 +205,4 @@ HEADERS                := $(CONFIGURATIONS_PATH) $(ILLD_Impl_PATH) $(ILLD_Lib_PA
 						  $(INFRA_Reg_PATH) $(SERVICE_Utilities_PATH) $(ILLD_Port_PATH) $(AUTOSAR_OS_PATH)\
 						  $(AUTOSAR_OSCFG_PATH) $(USER_MCUINIT_PATH) $(USER_EXTDEVINIT_PATH) $(USER_EXTDEVDRIVERS_PATH)\
 						  $(USER_INTERRUPTS_PATH) $(USER_MIDSYS_PATH) $(USER_MATH_PATH) $(USER_CONTROLMODULES_PATH)\
-						  $(USER_MOTORDRIVE_PATH) $(USER_CONFIGURATION_PATH)
+						  $(USER_MOTORDRIVE_PATH) $(USER_CONFIGURATION_PATH) $(USER_CAN_PATH) $(USER_SILMULINKCODE_PATH)

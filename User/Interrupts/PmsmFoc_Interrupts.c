@@ -41,6 +41,7 @@
 /*----------------------------------Includes----------------------------------*/
 /******************************************************************************/
 #include "PmsmFoc_Interrupts.h"
+#include "CANFD.h"
 /******************************************************************************/
 /*------------------------------Global variables------------------------------*/
 /******************************************************************************/
@@ -59,8 +60,6 @@
 void Os_Isr_CURR_G0CH0()
 {
 	PmsmFoc_StateMacine_doControlLoop(&g_motorControl);
-
-	//OneEye_osciStep();
 }
 
 void Os_Isr_VHVDC_G1CH3()
@@ -78,24 +77,36 @@ void Os_Isr_Gpt12_Encoder()
 	IfxGpt12_IncrEnc_onZeroIrq(&g_motorControl.positionSensor.encoder.incrEncoder);
 }
 
+void Os_Isr_CAN02_Tx()
+{
+    IfxCan_Node_clearInterruptFlag(g_mcmcan.canSrcNode.node, IfxCan_Interrupt_transmissionCompleted);
+    g_isrTxFinished = 0;
+}
+
+void Os_Isr_CAN02_Rx()
+{
+	IfxCan_RxBufferId rxBufferId = IfxCan_RxBufferId_0;
+    IfxCan_Node_clearInterruptFlag(g_mcmcan.canDstNode.node, IfxCan_Interrupt_messageStoredToDedicatedRxBuffer);
+    while(!IfxCan_Node_isRxBufferNewDataUpdated(g_mcmcan.canDstNode.node, rxBufferId))
+    {
+        rxBufferId++;
+    }
+	g_mcmcan.rxMsg.bufferNumber = (uint8)rxBufferId;
+    IfxCan_Can_readMessage(&g_mcmcan.canDstNode, &g_mcmcan.rxMsg, (uint32*)&g_mcmcan.rxData[0]);
+    g_isrRxCount++;
+}
+
+
 void Os_Isr_Qspi_Tlf35584_TxIsr()
 {
 	IfxCpu_enableInterrupts();
-#if (SPI_2_USE_DMA == TRUE)
-	IfxQspi_SpiMaster_isrDmaTransmit(&spiMasterQspi2);
-#else
 	IfxQspi_SpiMaster_isrTransmit(&spiMasterQspi2);
-#endif
 }
 
 void Os_Isr_Qspi_Tlf35584_RxIsr()
 {
 	IfxCpu_enableInterrupts();
-#if (SPI_2_USE_DMA == TRUE)
-	IfxQspi_SpiMaster_isrDmaReceive(&spiMasterQspi2);
-#else
 	IfxQspi_SpiMaster_isrReceive(&spiMasterQspi2);
-#endif
 }
 
 void Os_Isr_Qspi_Tlf35584_ErrIsr()
@@ -108,21 +119,13 @@ void Os_Isr_Qspi_Tlf35584_ErrIsr()
 void Os_Isr_Qspi_Tle9180_TxIsr()
 {
 	IfxCpu_enableInterrupts();
-#if (SPI_4_USE_DMA == TRUE)
-	IfxQspi_SpiMaster_isrDmaTransmit(&spiMasterQspi4);
-#else
 	IfxQspi_SpiMaster_isrTransmit(&spiMasterQspi4);
-#endif
 }
 
 void Os_Isr_Qspi_Tle9180_RxIsr()
 {
 	IfxCpu_enableInterrupts();
-#if (SPI_4_USE_DMA == TRUE)
-	IfxQspi_SpiMaster_isrDmaReceive(&spiMasterQspi4);
-#else
 	IfxQspi_SpiMaster_isrReceive(&spiMasterQspi4);
-#endif
 }
 
 void Os_Isr_Qspi_Tle9180_ErrIsr()

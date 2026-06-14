@@ -73,6 +73,12 @@ Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_VHVDC_G1CH3_Dyn;
 
 Os_Hal_ContextType OsCfg_Hal_Context_Gpt12_Encoder_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Gpt12_Encoder_Dyn;
+
+Os_Hal_ContextType OsCfg_Hal_Context_CAN02_Tx_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_CAN02_Tx_Dyn;
+
+Os_Hal_ContextType OsCfg_Hal_Context_CAN02_Rx_Dyn;
+Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_CAN02_Rx_Dyn;
 /*******************************************Core1*******************************************/
 Os_Hal_ContextType OsCfg_Hal_Context_Os_CoreInitHook_OsCore1_Dyn;
 Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Os_CoreInitHook_OsCore1_Dyn;
@@ -318,6 +324,28 @@ const Os_Hal_ContextConfigType OsCfg_Hal_Context_Gpt12_Encoder =
 	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
 };
 
+
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_CAN02_Tx = 
+{
+	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_CAN02_Tx_Dyn)+1),
+	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_CAN02_Tx_Dyn)),
+	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
+	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
+	/*Entry               =*/(uint32)&Os_Isr_CAN02_Tx,
+	/*ReturnAddress       =*/(uint32)&Os_TrapIsrEpilogue,
+	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
+};
+
+const Os_Hal_ContextConfigType OsCfg_Hal_Context_CAN02_Rx = 
+{
+	/*StackEndAddr        =*/(uint32)(OS_STACK_GETHIGHADDRESS(OsCfg_Stack_CAN02_Rx_Dyn)+1),
+	/*StackStartAddr      =*/(uint32)(OS_STACK_GETLOWADDRESS(OsCfg_Stack_CAN02_Rx_Dyn)),
+	/*ProgramStatus       =*/(uint32)OS_HAL_PSW_IS_MASK | OS_HAL_PSW_CDE_MASK | OS_HAL_PSW_IO_SUPERVISOR | OS_HAL_PSW_S_MASK,
+	/*ProtectionSet       =*/(uint32)OS_HAL_PSW_PRS_PS1,
+	/*Entry               =*/(uint32)&Os_Isr_CAN02_Rx,
+	/*ReturnAddress       =*/(uint32)&Os_TrapIsrEpilogue,
+	/*IntStatus           =*/((uint32)88<<OS_HAL_PCXI_PCPN_BIT_POSITION) | OS_HAL_PCXI_PIE_ENABLED		
+};
 
 
 

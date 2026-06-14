@@ -9,6 +9,8 @@
 #include "PmsmFoc_InitTLE9180.h"
 #include "PmsmFoc_Functions.h"
 
+#include "CANFD.h"
+
 volatile uint8 Test_Os_Core0_Cnt = 0;
 volatile uint8 Test_Os_Core1_Cnt = 0;
 volatile uint8 Test_Os_Core2_Cnt = 0;
@@ -35,7 +37,7 @@ static void SchM_Init(void)
 	if(id == OS_CORE_ID_0)
 	{
 		(void)ActivateTask(Core0_10ms_Task);
-		(void)SetRelAlarm(Rte_Al_TE2_Core0_10ms_Task_0_10ms, OS_MS2TICKS_SystemTimer_Core0(0)+(TickType)1, OS_MS2TICKS_SystemTimer_Core0(200));		
+		(void)SetRelAlarm(Rte_Al_TE2_Core0_10ms_Task_0_10ms, OS_MS2TICKS_SystemTimer_Core0(0)+(TickType)1, OS_MS2TICKS_SystemTimer_Core0(2));		
 		Rte_InitState_0 = 2;
 	}
 	if(id == OS_CORE_ID_1)
@@ -80,8 +82,17 @@ void Os_Task_Core0_10ms_Task(void)
 		if((ev & Rte_Ev_Cyclic2_Core0_10ms_Task_0_10ms) != (EventMaskType)0)
 		{
 			Test_Os_Core0_Cnt++;
-			//IfxTLF35584_readWrite(0x4E00);
-			main_Tle9180_test();
+
+			/*test can*/
+			PmsmFoc_CanPhy2Raw(&g_motorControl);			
+			transmitCanMessage();
+			
+			/*req*/
+			PmsmFoc_MotorStateReq(&g_motorControl);
+			
+			/*speedloop*/
+			//PmsmFoc_doSpeedControl(&g_motorControl);
+			PmsmFoc_ASWSpeedLoop(&g_motorControl);
 		}
 	}
 }
@@ -90,8 +101,8 @@ void Os_Task_OsHook_Init_Task_Core0(void)
 {
 	ISRType stIsrId;
 	const Os_IsrConfigType *pstIsrCfg;
-	const Os_ThreadConfigType *pstCurrentThread;	
-
+	const Os_ThreadConfigType *pstCurrentThread;
+	
     PmsmFoc_initMotorControl(&g_motorControl);
 
 	SchM_Init();

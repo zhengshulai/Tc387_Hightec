@@ -102,4 +102,7 @@ extern void Os_Isr_Qspi_Tlf35584_ErrIsr();
 extern void Os_Isr_Qspi_Tle9180_TxIsr();
 extern void Os_Isr_Qspi_Tle9180_RxIsr();
 extern void Os_Isr_Qspi_Tle9180_ErrIsr();
+
+extern void Os_Isr_CAN02_Tx();
+extern void Os_Isr_CAN02_Rx();
 #endif /* PMSMFOC_INTERRUPTS_H_ */

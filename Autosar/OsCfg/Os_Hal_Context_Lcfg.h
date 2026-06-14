@@ -60,6 +60,12 @@ extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_VHVDC_G1CH3_Dyn;
 
 extern Os_Hal_ContextType OsCfg_Hal_Context_Gpt12_Encoder_Dyn;
 extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Gpt12_Encoder_Dyn;
+
+extern Os_Hal_ContextType OsCfg_Hal_Context_CAN02_Tx_Dyn;
+extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_CAN02_Tx_Dyn;
+
+extern Os_Hal_ContextType OsCfg_Hal_Context_CAN02_Rx_Dyn;
+extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_CAN02_Rx_Dyn;
 /*******************************************Core1*******************************************/
 extern Os_Hal_ContextType OsCfg_Hal_Context_Os_CoreInitHook_OsCore1_Dyn;
 extern Os_Hal_ContextFpuContextType OsCfg_Hal_FpuContext_Os_CoreInitHook_OsCore1_Dyn;
@@ -162,6 +168,9 @@ extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_VBEMF_G2CH3;
 extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_VHVDC_G1CH3;
 
 extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_Gpt12_Encoder;
+
+extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_CAN02_Tx;
+extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_CAN02_Rx;
 /**********************************************************************Core1***********************************************************************/
 extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_Os_CoreInitHook_OsCore1;
 extern const Os_Hal_ContextConfigType OsCfg_Hal_Context_ErrorHook_OsCore1;

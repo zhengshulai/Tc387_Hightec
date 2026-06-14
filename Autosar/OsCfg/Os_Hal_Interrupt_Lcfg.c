@@ -153,6 +153,29 @@ const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_Gpt12_Encoder =
 };
 
 
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_CAN02_Tx = 
+{
+	/*Level            =*/10,
+	/*Source           =*/0x5C4,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_CAN02_Tx = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_CAN02_Rx = 
+{
+	/*Level            =*/11,
+	/*Source           =*/0x5C0,
+	/*CoreAssignment   =*/0
+};
+const Os_Hal_IntIsrMapConfigType OsCfg_Hal_IntIsrMap_CAN02_Rx = 
+{
+	/*Dummy      =*/(uint32)0
+};
+
+
 
 const Os_Hal_IntIsrConfigType OsCfg_Hal_IntIsr_OsIsr_STM1_Ch0 = 
 {

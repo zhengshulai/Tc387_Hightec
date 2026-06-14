@@ -34,6 +34,8 @@ extern Os_Hal_StackType OsCfg_Stack_VBEMF_G2CH3_Dyn[(2048+16)/4];
 extern Os_Hal_StackType OsCfg_Stack_VHVDC_G1CH3_Dyn[(2048+16)/4];
 
 extern Os_Hal_StackType OsCfg_Stack_Gpt12_Encoder_Dyn[(1024+16)/4];
+extern Os_Hal_StackType OsCfg_Stack_CAN02_Tx_Dyn[(1024+16)/4];
+extern Os_Hal_StackType OsCfg_Stack_CAN02_Rx_Dyn[(1024+16)/4];
 
 extern Os_Hal_StackType OsCfg_Stack_OsCore1_Error_Dyn[(1024+16)/4];
 extern Os_Hal_StackType OsCfg_Stack_OsCore1_Init_Dyn[(1024+16)/4];
@@ -79,6 +81,8 @@ extern const Os_StackConfigType OsCfg_Stack_VBEMF_G2CH3;
 extern const Os_StackConfigType OsCfg_Stack_VHVDC_G1CH3;
 
 extern const Os_StackConfigType OsCfg_Stack_Gpt12_Encoder;
+extern const Os_StackConfigType OsCfg_Stack_CAN02_Tx;
+extern const Os_StackConfigType OsCfg_Stack_CAN02_Rx;
 /************************************************************Core1*********************************************************/
 extern const Os_StackConfigType OsCfg_Stack_Core1_10ms_Task;
 extern const Os_StackConfigType OsCfg_Stack_OsCore1_Error;

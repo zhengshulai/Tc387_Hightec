@@ -31,6 +31,8 @@ Os_Hal_StackType OsCfg_Stack_VBEMF_G2CH3_Dyn[(2048+16)/4];
 Os_Hal_StackType OsCfg_Stack_VHVDC_G1CH3_Dyn[(2048+16)/4];
 
 Os_Hal_StackType OsCfg_Stack_Gpt12_Encoder_Dyn[(1024+16)/4];
+Os_Hal_StackType OsCfg_Stack_CAN02_Tx_Dyn[(1024+16)/4];
+Os_Hal_StackType OsCfg_Stack_CAN02_Rx_Dyn[(1024+16)/4];
 
 Os_Hal_StackType OsCfg_Stack_OsCore1_Error_Dyn[(1024+16)/4];
 Os_Hal_StackType OsCfg_Stack_OsCore1_Init_Dyn[(1024+16)/4];
@@ -151,6 +153,19 @@ const Os_StackConfigType OsCfg_Stack_Gpt12_Encoder =
 	/*LowAddress     =*/OS_STACK_GETLOWADDRESS(OsCfg_Stack_Gpt12_Encoder_Dyn),
 	/*HighAddress    =*/OS_STACK_GETHIGHADDRESS(OsCfg_Stack_Gpt12_Encoder_Dyn)
 };
+
+const Os_StackConfigType OsCfg_Stack_CAN02_Tx = 
+{
+	/*LowAddress     =*/OS_STACK_GETLOWADDRESS(OsCfg_Stack_CAN02_Tx_Dyn),
+	/*HighAddress    =*/OS_STACK_GETHIGHADDRESS(OsCfg_Stack_CAN02_Tx_Dyn)
+};
+
+const Os_StackConfigType OsCfg_Stack_CAN02_Rx = 
+{
+	/*LowAddress     =*/OS_STACK_GETLOWADDRESS(OsCfg_Stack_CAN02_Rx_Dyn),
+	/*HighAddress    =*/OS_STACK_GETHIGHADDRESS(OsCfg_Stack_CAN02_Rx_Dyn)
+};
+
 
 /************************************************************Core1*********************************************************/
 const Os_StackConfigType OsCfg_Stack_Core1_10ms_Task = 

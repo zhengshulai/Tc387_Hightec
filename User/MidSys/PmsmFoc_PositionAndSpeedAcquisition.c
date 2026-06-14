@@ -100,15 +100,15 @@ void PmsmFoc_PositionAcquisition_init(PositionAcquisition* positionAcquisition, 
     }
 
     {
-    	//positionAcquisition->speedLpf.a = 0.10;
-    	//positionAcquisition->speedLpf.b = 0;
-    	//positionAcquisition->speedLpf.out = 0;
+    	positionAcquisition->speedLpf.a = 0.4;
+    	positionAcquisition->speedLpf.b = 0.6;
+    	positionAcquisition->speedLpf.out = 0;
 
-       // Ifx_LowPassPt1F32_Config lpfConfig;
-       // lpfConfig.gain            = 10.0;
-       // lpfConfig.cutOffFrequency = 25;
-       // lpfConfig.samplingTime    = 50.0e-6;
-       // Ifx_LowPassPt1F32_init(&positionAcquisition->speedLpf, &lpfConfig);
+        Ifx_LowPassPt1F32_Config lpfConfig;
+        lpfConfig.gain            = 10.0;
+        lpfConfig.cutOffFrequency = 25;
+        lpfConfig.samplingTime    = 1.0e-3;
+        Ifx_LowPassPt1F32_init(&positionAcquisition->speedLpf, &lpfConfig);
     }
 }
 
@@ -165,6 +165,7 @@ float32 PmsmFoc_PositionAcquisition_updateSpeed(PositionAcquisition* positionAcq
 	        case PositionAcquisition_SensorType_Encoder:
 	        {
 	            speed= IfxGpt12_IncrEnc_getSpeed(&positionAcquisition->encoder.incrEncoder);
+				
 	            break;
 	        }
 	        case PositionAcquisition_SensorType_Resolver:
@@ -183,6 +184,6 @@ float32 PmsmFoc_PositionAcquisition_updateSpeed(PositionAcquisition* positionAcq
 	        default: break;
 	    }
 
-	    //speed= Ifx_LowPassPt1F32_do(&positionAcquisition->speedLpf, speed);
+	    speed= Ifx_LowPassPt1F32_do(&positionAcquisition->speedLpf, speed);
 	    return(speed);
 }

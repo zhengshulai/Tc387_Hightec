@@ -49,6 +49,7 @@
 #include "PmsmFoc_Inverter.h"
 #include "PmsmFoc_PositionAndSpeedAcquisition.h"
 #include "PmsmFoc_UserConfig.h"
+#include "CANFD.h"
 /******************************************************************************/
 /*-------------------------------Global variables-----------------------------*/
 /******************************************************************************/
@@ -114,6 +115,7 @@ void PmsmFoc_initHardware(MotorControl* const motorCtrl)
     PmsmFoc_Tle9180_loadConfiguration();
     IfxCpu_disableInterrupts();
 
+    initMcmcan();
 }
 
 

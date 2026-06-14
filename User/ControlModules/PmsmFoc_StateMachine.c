@@ -111,9 +111,11 @@ void PmsmFoc_StateMacine_doControlLoop(MotorControl* const motorCtrl)
 		break;
 	case StateMachine_focClosedLoop:
 		/* FOC controller. */
-		PmsmFoc_doFieldOrientedControl(motorCtrl);
+		//PmsmFoc_doFieldOrientedControl(motorCtrl);
 		/* Update GTM TOM/ATOM duty cycles. */
-		PmsmFoc_doPwmSvmUpdate(&motorCtrl->inverter);
+		//PmsmFoc_doPwmSvmUpdate(&motorCtrl->inverter);
+		
+		PmsmFoc_ASWCurrentLoop(motorCtrl);
 		break;
 
 	case StateMachine_tuneCurrentRegulators:

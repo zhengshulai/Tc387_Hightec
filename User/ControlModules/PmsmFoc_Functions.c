@@ -245,6 +245,7 @@ void PmsmFoc_doFieldOrientedControl(MotorControl* const motorCtrl)
 
 	/* Space Vector Modulator */
 	PmsmFoc_doSvPwmModulation(&motorCtrl->inverter, motorCtrl->pmsmFoc.modulationIndex);
+	
 }
 
 void PmsmFoc_resetEncoderCalibrationStatus(MotorControl* const motorCtrl)
@@ -577,6 +578,93 @@ void PmsmFoc_doMiscWorks(MotorControl* const motorCtrl)
 
 }
 
+MotorPara_TransCan  g_motorpara_transcan;
+void PmsmFoc_CanPhy2Raw(MotorControl* const motorCtrl)
+{
+	g_motorpara_transcan.ActSpeed    = (sint32)(motorCtrl->pmsmFoc.speedControl.measSpeed);
+	g_motorpara_transcan.DCVoltage   = (sint32)((motorCtrl->inverter.dcLinkVoltageSense.input.value) * (sint32)1e7);
+	g_motorpara_transcan.DutyU       = (uint32)(motorCtrl->inverter.pwm3PhaseOutput.pwmOnTimes[0]);
+	g_motorpara_transcan.DutyV       = (uint32)(motorCtrl->inverter.pwm3PhaseOutput.pwmOnTimes[1]);
+	g_motorpara_transcan.DutyW       = (uint32)(motorCtrl->inverter.pwm3PhaseOutput.pwmOnTimes[2]);
+	g_motorpara_transcan.ElecAngle   = (sint16)(motorCtrl->pmsmFoc.electricalAngle);
+	g_motorpara_transcan.Freq        = (motorCtrl->inverter.pwm3PhaseOutput.pwm.timer->base.period);
+	g_motorpara_transcan.PhaCurrentU = (sint32)((motorCtrl->pmsmFoc.iPhaseMeas.u) * (sint32)1e7);
+	g_motorpara_transcan.PhaCurrentV = (sint32)((motorCtrl->pmsmFoc.iPhaseMeas.v) * (sint32)1e7);
+	g_motorpara_transcan.PhaCurrentW = (sint32)((motorCtrl->pmsmFoc.iPhaseMeas.w) * (sint32)1e7);
+	g_motorpara_transcan.Sector      = (motorCtrl->inverter.pwm3PhaseOutput.sectorSVM);
+	motorCtrl->pmsmFoc.speedControl.refSpeed    =   (float32)(((g_mcmcan.rxData[2] << 24) | (g_mcmcan.rxData[3] << 16) | (g_mcmcan.rxData[4] << 8) | (g_mcmcan.rxData[5]))*1e-5);
+}
 
 
+void CurrentLoop_Bsw2Asw(MotorControl* const motorCtrl)
+{
+	CurrentControl_U.IqRef     = SpeedControl_Y.IqRef;
+	CurrentControl_U.IdRef     = SpeedControl_Y.IdRef;
+	CurrentControl_U.CurrentKP = SpeedControl_Y.CurrentKP;
+	CurrentControl_U.CurrentKI = SpeedControl_Y.CurrentKI;
+	CurrentControl_U.IuAct     = motorCtrl->pmsmFoc.iPhaseMeas.u;
+	CurrentControl_U.IvAct     = motorCtrl->pmsmFoc.iPhaseMeas.v;
+	CurrentControl_U.IwAct     = motorCtrl->pmsmFoc.iPhaseMeas.w;
+	CurrentControl_U.AngleEnc  = motorCtrl->pmsmFoc.electricalAngle;
+}
+void CurrentLoop_Asw2Bsw(MotorControl* const motorCtrl)
+{
+	motorCtrl->inverter.pwm3PhaseOutput.pwmOnTimes[0] = CurrentControl_Y.Uduty;
+	motorCtrl->inverter.pwm3PhaseOutput.pwmOnTimes[1] = CurrentControl_Y.Vduty;
+	motorCtrl->inverter.pwm3PhaseOutput.pwmOnTimes[2] = CurrentControl_Y.Wduty;
+}
 
+void PmsmFoc_ASWCurrentLoop(MotorControl* const motorCtrl)
+{
+	PmsmFoc_reconstructCurrent(motorCtrl);
+	motorCtrl->pmsmFoc.electricalAngle = (sint16)PmsmFoc_PositionAcquisition_updatePosition(&motorCtrl->positionSensor);
+
+	CurrentLoop_Bsw2Asw(motorCtrl);
+    CurrentControl_step();
+	CurrentLoop_Asw2Bsw(motorCtrl);
+	
+	PmsmFoc_doPwmSvmUpdate(&motorCtrl->inverter);
+}
+
+void PmsmFoc_ASWSpeedLoop(MotorControl* const motorCtrl)
+{
+	SpeedControl_U.SpeedAct = motorCtrl->pmsmFoc.speedControl.measSpeed;
+	SpeedControl_U.SpeedRef = (float32)(((g_mcmcan.rxData[2] << 24) | (g_mcmcan.rxData[3] << 16) | (g_mcmcan.rxData[4] << 8) | (g_mcmcan.rxData[5]))*1e-5);
+	SpeedControl_U.LPara    = 0.000295f;
+	SpeedControl_U.RPara    = 0.51f;
+	SpeedControl_U.Vdc      = motorCtrl->inverter.dcLinkVoltageSense.input.value;
+	
+	SpeedControl_step();
+}
+
+void PmsmFoc_MotorStateReq(MotorControl* const motorCtrl)
+{
+	if(g_mcmcan.rxData[0] == StateMachine_focClosedLoop)
+	{
+		if((motorCtrl->inverter.phaseCurrentSense.calibration.status == PmsmFoc_SensorAdc_CalibrationStatus_done) &
+				(motorCtrl->positionSensor.encoder.calibrationStatus == Encoder_CalibrationStatus_done))
+				
+		{
+			motorCtrl->controlParameters.state = StateMachine_focClosedLoop;
+			motorCtrl->pmsmFoc.speedControl.enabled = TRUE;
+			PmsmFoc_SpeedControl_enable(&motorCtrl->pmsmFoc.speedControl);
+			IfxTLE9180_activateEnable(&tle9180.driver);
+		}
+		else
+		{
+			motorCtrl->controlParameters.state = StateMachine_calibration;
+			PmsmFoc_SpeedControl_disable(&motorCtrl->pmsmFoc.speedControl);
+			IfxTLE9180_activateEnable(&tle9180.driver);
+		}
+	}
+	else
+	{
+		SpeedControl_U.SpeedRef = 0;
+		if(fabs(motorCtrl->pmsmFoc.speedControl.measSpeed) < 10)
+		{
+			motorCtrl->controlParameters.state = StateMachine_motorIdle;
+			IfxTLE9180_deactivateEnable(&tle9180.driver);
+		}
+	}
+
+}

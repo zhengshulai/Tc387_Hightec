@@ -48,6 +48,9 @@
 
 #define Gpt12_Encoder             Gpt12_Encoder
 
+#define CAN02_Tx                  CAN02_Tx
+#define CAN02_Rx                  CAN02_Rx
+
 #define Rte_Al_TE2_Core0_10ms_Task_0_10ms Rte_Al_TE2_Core0_10ms_Task_0_10ms
 #define Rte_Al_TE2_Core1_10ms_Task_0_10ms Rte_Al_TE2_Core1_10ms_Task_0_10ms
 #define Rte_Al_TE2_Core2_10ms_Task_0_10ms Rte_Al_TE2_Core2_10ms_Task_0_10ms
@@ -136,7 +139,9 @@ typedef enum
 	VBEMF_G2CH3 = 15,
 	VHVDC_G1CH3 = 16,
     Gpt12_Encoder = 17,
-	OS_ISRID_COUNT = 18,
+	CAN02_Tx = 18,
+	CAN02_Rx = 19,
+	OS_ISRID_COUNT = 20,
 	INVALID_ISR = OS_ISRID_COUNT
 }ISRType;
 

@@ -54,8 +54,9 @@
 #include "Arith.StdReal.h"
 #include "MotorControl.h"
 #include "PmsmFoc_SpeedControl.h"
-
-
+#include "CANFD.h"
+#include "CurrentControl.h"
+#include "SpeedControl.h"
 /******************************************************************************/
 /*--------------------------------Enumerations--------------------------------*/
 /******************************************************************************/
@@ -199,10 +200,28 @@ typedef struct
 	MotorParameters		motor;					/**< \brief Motor parameters object */
 } MotorControl;
 
+typedef struct
+{
+	sint32 ActSpeed;
+	sint32 DCVoltage;
+	uint32 DutyU;
+	uint32 DutyV;
+	uint32 DutyW;
+	sint16 ElecAngle;
+	sint16 Freq;
+	sint32 PhaCurrentU;
+	sint32 PhaCurrentV;
+	sint32 PhaCurrentW;
+	uint8  Sector;
+} MotorPara_TransCan;
+
+
+
 /******************************************************************************/
 /*------------------------------Global variables------------------------------*/
 /******************************************************************************/
-extern MotorControl g_motorControl;
+extern MotorControl        g_motorControl;
+extern MotorPara_TransCan  g_motorpara_transcan;
 /******************************************************************************/
 /*------------------------Private Variables/Constants-------------------------*/
 /******************************************************************************/
@@ -425,6 +444,14 @@ IFX_EXTERN void PmsmFoc_doDqDecoupling(PmsmFoc* const foc);
  * /ingroup pmsm_foc_controlmodules
  */
 IFX_EXTERN void PmsmFoc_doMiscWorks (MotorControl* const motorCtrl);
+IFX_EXTERN void PmsmFoc_CanPhy2Raw(MotorControl* const motorCtrl);
+IFX_EXTERN void CurrentLoop_Bsw2Asw(MotorControl* const motorCtrl);
+IFX_EXTERN void CurrentLoop_Asw2Bsw(MotorControl* const motorCtrl);
+IFX_EXTERN void PmsmFoc_ASWCurrentLoop(MotorControl* const motorCtrl);
+IFX_EXTERN void PmsmFoc_ASWSpeedLoop(MotorControl* const motorCtrl);
+IFX_EXTERN void PmsmFoc_MotorStateReq(MotorControl* const motorCtrl);
+
+
 /** /brief
  *
  * /param motorCtrl Reference to structure that contains instance data members

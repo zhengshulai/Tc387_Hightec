@@ -49,7 +49,7 @@ static const Os_HookConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_HookR
 {
 	NULL_PTR
 };
-static const Os_IsrConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_IsrRefs[11] = 
+static const Os_IsrConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_IsrRefs[13] = 
 {
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tlf35584_TxIsr),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Tlf35584_RxIsr),
@@ -61,6 +61,8 @@ static const Os_IsrConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_IsrRef
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_VBEMF_G2CH3),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_VHVDC_G1CH3),
 	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_Gpt12_Encoder),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_CAN02_Tx),
+	OS_ISR_CASTCONFIG_ISR_2_ISR(OsCfg_Isr_OsIsr_CAN02_Rx),
 	NULL_PTR
 };
 static const Os_IsrCat1ConfigRefType OsCfg_App_OsApplication_NonTrusted_Core0_Cat1IsrRefs[1] = 
@@ -90,7 +92,7 @@ const Os_AppConfigType OsCfg_App_OsApplication_NonTrusted_Core0 =
 	/*TaskRefs                     =*/OsCfg_App_OsApplication_NonTrusted_Core0_TaskRefs,
 	/*TaskCount                    =*/(Os_ObjIdxType)2u,
 	/*IsrCat2Refs                  =*/OsCfg_App_OsApplication_NonTrusted_Core0_IsrRefs,
-	/*IsrCat2Count                 =*/(Os_ObjIdxType)10u,
+	/*IsrCat2Count                 =*/(Os_ObjIdxType)12u,
 	/*IsrCat1Refs                  =*/OsCfg_App_OsApplication_NonTrusted_Core0_Cat1IsrRefs,
 	/*IsrCat1Count                 =*/(Os_ObjIdxType)0u,
 	/*CounterRefs                  =*/OsCfg_App_OsApplication_NonTrusted_Core0_CounterRefs,

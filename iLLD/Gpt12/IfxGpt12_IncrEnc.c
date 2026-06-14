@@ -476,7 +476,7 @@ IFX_STATIC void IfxGpt12_IncrEnc_updateSpeedFromT2(IfxGpt12_IncrEnc *driver, sin
     driver->speed = speed;
 }
 
-
+sint32 Incr_lastDiff = 0;
 IFX_STATIC void IfxGpt12_IncrEnc_updateSpeedFromT3(IfxGpt12_IncrEnc *driver, sint32 newPosition)
 {
     float32 speed;
@@ -490,6 +490,11 @@ IFX_STATIC void IfxGpt12_IncrEnc_updateSpeedFromT3(IfxGpt12_IncrEnc *driver, sin
     {
         diff = driver->rawPosition - newPosition;
     }
+	
+    if ((diff > 3*Incr_lastDiff) || (diff < 3*Incr_lastDiff))
+	{
+		diff = Incr_lastDiff;
+	}
 
     if (diff < 0)
     {
@@ -514,7 +519,14 @@ IFX_STATIC void IfxGpt12_IncrEnc_updateSpeedFromT3(IfxGpt12_IncrEnc *driver, sin
             {
                 // Delete Capture Request Bit
                 srcCap->B.CLRR = 1;
-                speed          = driver->speedConstTimeDiff / gpt12->CAPREL.B.CAPREL;
+				if(gpt12->CAPREL.B.CAPREL >=1)
+                {
+					speed          = driver->speedConstTimeDiff / gpt12->CAPREL.B.CAPREL;
+				}
+				else
+				{
+					speed = driver->speed;
+				}
             }
             else
             {
@@ -528,7 +540,7 @@ IFX_STATIC void IfxGpt12_IncrEnc_updateSpeedFromT3(IfxGpt12_IncrEnc *driver, sin
             speed         = 0.0;
         }
     }
-
-    speed         = driver->direction == IfxStdIf_Pos_Dir_forward ? speed : -speed;
+    Incr_lastDiff = diff;
+    speed         = driver->direction == IfxStdIf_Pos_Dir_forward ? speed/1024 : -speed/1024;
     driver->speed = speed;
 }
